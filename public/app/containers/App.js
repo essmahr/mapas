@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { loadPins } from '../actions';
 import { bindActionCreators } from 'redux';
 
+import TapasMap from '../components/TapasMap';
+
 class App extends React.Component {
   static propTypes = {};
 
@@ -15,12 +17,8 @@ class App extends React.Component {
   }
 
   render() {
-    const actions = this.props.actions;
-
     return (
-      <div>
-        <h2>Sup</h2>
-      </div>
+      <TapasMap pins={this.props.pins} />
     );
   }
 }

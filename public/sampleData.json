@@ -1,18 +1,20 @@
 [
   {
     "title": "test1",
-    "image": "testing"
+    "image": "testing",
+    "latitude": 37.186864,
+    "longitude": -3.602432
   },
   {
     "title": "test2",
-    "image": "testing"
+    "image": "testing",
+    "latitude": 37.186309,
+    "longitude": -3.588727
   },
   {
     "title": "test3",
-    "image": "testing"
-  },
-  {
-    "title": "test4",
-    "image": "testing"
+    "image": "testing",
+    "latitude": 37.1768644,
+    "longitude": -3.5987629
   }
 ]
