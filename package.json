@@ -30,6 +30,7 @@
     "babel-preset-stage-0": "6.x",
     "copy-webpack-plugin": "latest",
     "css-loader": "~0.23.0",
+    "json-loader": "^0.5.4",
     "open-browser-webpack-plugin": "0.0.2",
     "style-loader": "~0.13.0",
     "webpack": "latest",

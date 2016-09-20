@@ -1,6 +1,9 @@
 import React from 'react';
 import GoogleMap from 'google-map-react';
+import mapStyles from 'json!../config/mapStyles.json';
 import TapasPin from './TapasPin';
+
+
 
 export default class TapasMap extends React.Component {
   static propTypes = {
@@ -22,6 +25,10 @@ export default class TapasMap extends React.Component {
 
     const zoom = 16;
 
+    const options = {
+      styles: mapStyles,
+    }
+
     const style = {
       width: '100vw',
       height: '100vh',
@@ -29,6 +36,7 @@ export default class TapasMap extends React.Component {
 
     return (
       <GoogleMap
+        options={options}
         defaultCenter={center}
         defaultZoom={zoom}
         style={style}>
