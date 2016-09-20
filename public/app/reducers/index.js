@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
-import pinsLoaded from './pinsLoaded';
+import pins from './pinsReducer';
+import pinsLoaded from './pinsLoadedReducer';
 
 const rootReducer = combineReducers({
+  pins,
   pinsLoaded,
 });
 
