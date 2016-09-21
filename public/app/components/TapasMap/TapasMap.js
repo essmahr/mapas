@@ -1,9 +1,7 @@
 import React from 'react';
 import GoogleMap from 'google-map-react';
-import mapStyles from 'json!../config/mapStyles.json';
-import TapasPin from './TapasPin';
-
-
+import mapStyles from 'json!../../config/mapStyles.json';
+import TapasPin from '../TapasPin/TapasPin';
 
 export default class TapasMap extends React.Component {
   static propTypes = {

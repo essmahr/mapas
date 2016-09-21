@@ -8,7 +8,7 @@ module.exports = {
     hot: true,
     inline: true,
     progress: true,
-    devtool: 'sourcemap',
+    devtool: 'source-map',
     contentBase: './public',
     port: 8080
   },
@@ -24,8 +24,17 @@ module.exports = {
   },
   module: {
     loaders:[
-      { test: /\.css$/, include: path.resolve(__dirname, 'public/styles'), loader: 'style-loader!css-loader' },
-      { test: /\.js[x]?$/, include: path.resolve(__dirname, 'public/app'), exclude: /node_modules/, loader: 'babel-loader' },
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style?sourceMap',
+          'css?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]',
+          'sass?sourceMap'
+        ]
+      },
+      { test: /\.js$/,
+        include: path.resolve(__dirname, 'public/app'), exclude: /node_modules/, loader: 'babel-loader'
+      }
     ]
   },
   plugins: [
