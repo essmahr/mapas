@@ -1,6 +1,8 @@
 import React from 'react';
+import CSSModules from 'react-css-modules';
+import styles from './AppWrapper.scss';
 
-export default class AppContainer extends React.Component {
+class AppContainer extends React.Component {
   static propTypes = {
     name: React.PropTypes.string,
   };
@@ -11,9 +13,11 @@ export default class AppContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div styleName='container'>
         {this.props.children}
       </div>
     );
   }
 }
+
+export default CSSModules(AppContainer, styles);

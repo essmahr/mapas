@@ -11,3 +11,13 @@ export function loadPins() {
     }
   };
 }
+
+
+export const ACTIVE_PIN_CHANGE = 'ACTIVE_PIN_CHANGE';
+
+export function setActivePin(id) {
+  return {
+    type: ACTIVE_PIN_CHANGE,
+    id,
+  }
+}

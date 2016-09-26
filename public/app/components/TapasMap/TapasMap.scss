@@ -1,0 +1,9 @@
+@import '../../../styles/resources';
+
+.wrapper {
+  margin: 0 $gutter $gutter;
+  position: relative;
+  flex: 0 1 auto;
+  overflow: hidden;
+  height: 100%;
+}

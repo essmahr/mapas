@@ -1,1 +1,24 @@
 @import "~normalize.css/normalize";
+@import "./resources";
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+* {
+  &,
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}
+
+body {
+  font-size: 14px;
+  color: $black;
+}

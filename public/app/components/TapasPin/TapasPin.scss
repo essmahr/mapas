@@ -1,4 +1,15 @@
-.outer {}
+@import '../../../styles/resources';
 
-.inner {}
+.pin {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: $orange;
+  border: 1px solid darken($orange, 5%);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
 

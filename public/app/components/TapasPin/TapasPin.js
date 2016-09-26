@@ -4,9 +4,7 @@ import styles from './TapasPin.scss';
 
 const TapasPin = function(props) {
   return (
-    <div styleName='outer'>
-      <div styleName='inner'>Pin!</div>
-    </div>
+    <div onClick={props.onClick.bind(this)} styleName='pin'></div>
   );
 }
 

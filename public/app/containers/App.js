@@ -4,7 +4,9 @@ import { loadPins } from '../actions';
 import { bindActionCreators } from 'redux';
 
 import TapasMap from '../components/TapasMap/TapasMap';
-import AppContainer from '../components/AppContainer/AppContainer';
+import Header from '../components/Header/Header';
+import AppWrapper from '../components/AppWrapper/AppWrapper';
+import Overlay from '../components/Overlay/Overlay';
 
 import '../../styles/base.scss';
 
@@ -21,16 +23,19 @@ class App extends React.Component {
 
   render() {
     return (
-      <AppContainer>
+      <AppWrapper>
+        <Header />
         <TapasMap pins={this.props.pins} />
-      </AppContainer>
+        { this.props.activePin !== null ? <Overlay /> : null }
+      </AppWrapper>
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    pins: state.pins
+    pins: state.pins,
+    activePin: state.activePin,
   };
 }
 

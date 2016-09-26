@@ -1,0 +1,10 @@
+@import '../../../styles/resources';
+
+.header {
+  flex: 0 1 auto;
+  padding: $gutter/2 $gutter;
+}
+
+.heading {
+  font-size: 20px;
+}

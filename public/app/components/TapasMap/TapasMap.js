@@ -1,9 +1,13 @@
 import React from 'react';
 import GoogleMap from 'google-map-react';
+import CSSModules from 'react-css-modules';
 import mapStyles from 'json!../../config/mapStyles.json';
-import TapasPin from '../TapasPin/TapasPin';
 
-export default class TapasMap extends React.Component {
+import styles from './TapasMap.scss';
+
+import PinContainer from '../../containers/Pin';
+
+class TapasMap extends React.Component {
   static propTypes = {
     pins: React.PropTypes.array,
   };
@@ -14,7 +18,12 @@ export default class TapasMap extends React.Component {
 
   pins() {
     return this.props.pins.map((pin, idx) => {
-      return <TapasPin key={idx} lat={pin.latitude} lng={pin.longitude} />
+      return <PinContainer
+        id={idx}
+        lat={pin.latitude}
+        lng={pin.longitude}
+        key={idx}
+        />
     });
   }
 
@@ -25,21 +34,19 @@ export default class TapasMap extends React.Component {
 
     const options = {
       styles: mapStyles,
-    }
-
-    const style = {
-      width: '100vw',
-      height: '100vh',
-    }
+    };
 
     return (
-      <GoogleMap
-        options={options}
-        defaultCenter={center}
-        defaultZoom={zoom}
-        style={style}>
-        {this.pins()}
-      </GoogleMap>
+      <div styleName='wrapper'>
+        <GoogleMap
+          options={options}
+          defaultCenter={center}
+          defaultZoom={zoom}>
+          {this.pins()}
+        </GoogleMap>
+      </div>
     );
   }
 }
+
+export default CSSModules(TapasMap, styles);
