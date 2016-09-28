@@ -1,6 +1,7 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './Overlay.scss';
+import SlidesContainer from '../../containers/SlidesContainer';
 
 class Overlay extends React.Component {
   static propTypes = {
@@ -12,8 +13,15 @@ class Overlay extends React.Component {
   }
 
   render() {
+    const place = this.props.place;
+
     return (
-      <div styleName='overlay'>Overlay!</div>
+      <section styleName='overlay'>
+        <header styleName='header'>
+          <h1>{place.title}</h1>
+        </header>
+        <SlidesContainer tapas={place.tapas} />
+      </section>
     );
   }
 }

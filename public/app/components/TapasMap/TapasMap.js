@@ -34,10 +34,11 @@ class TapasMap extends React.Component {
 
     const options = {
       styles: mapStyles,
+      keyboardShortcuts: this.props.listening,
     };
 
     return (
-      <div styleName='wrapper'>
+      <div styleName='map'>
         <GoogleMap
           options={options}
           defaultCenter={center}

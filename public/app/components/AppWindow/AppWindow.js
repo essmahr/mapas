@@ -1,6 +1,6 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
-import styles from './AppWrapper.scss';
+import styles from './AppWindow.scss';
 
 class AppContainer extends React.Component {
   static propTypes = {
@@ -13,7 +13,7 @@ class AppContainer extends React.Component {
 
   render() {
     return (
-      <div styleName='container'>
+      <div styleName='app-window'>
         {this.props.children}
       </div>
     );

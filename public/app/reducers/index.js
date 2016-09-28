@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import pins from './pinsReducer';
 import pinsLoaded from './pinsLoadedReducer';
-import activePin from './activePinReducer';
+import currentPin from './currentPinReducer';
+import currentTapas from './currentTapasReducer';
 
 const rootReducer = combineReducers({
   pins,
   pinsLoaded,
-  activePin,
+  currentPin,
+  currentTapas,
 });
 
 export default rootReducer;

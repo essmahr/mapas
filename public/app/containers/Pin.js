@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setActivePin } from '../actions';
+import { setCurrentPin } from '../actions';
 
 import TapasPin from '../components/TapasPin/TapasPin';
 
 const Pin = function(props) {
   const onClick = function() {
-    props.setActivePin(props.id);
+    props.setCurrentPin(props.id);
   }
 
   return (
@@ -23,8 +23,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setActivePin: (id) => {
-      dispatch(setActivePin(id));
+    setCurrentPin: (id) => {
+      dispatch(setCurrentPin(id));
     }
   }
 }

@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadPins } from '../actions';
+import { loadPins, setCurrentPin } from '../actions';
 import { bindActionCreators } from 'redux';
 
 import TapasMap from '../components/TapasMap/TapasMap';
 import Header from '../components/Header/Header';
-import AppWrapper from '../components/AppWrapper/AppWrapper';
+import AppWindow from '../components/AppWindow/AppWindow';
 import Overlay from '../components/Overlay/Overlay';
 
-import '../../styles/base.scss';
+import styles from '../../styles/base.scss';
 
 class App extends React.Component {
   static propTypes = {};
@@ -21,13 +21,27 @@ class App extends React.Component {
     this.props.loadPins();
   }
 
+  handleKeyDown(evt) {
+    if (evt.key === 'Escape' && this.props.currentPin !== null) {
+      this.props.setCurrentPin(null);
+    }
+  }
+
   render() {
+    const place = this.props.currentPin !== null
+      ? this.props.pins[this.props.currentPin]
+      : false;
+
+    const mapListening = this.props.currentPin === null;
+
     return (
-      <AppWrapper>
+      <div className={styles.wrapper} onKeyDown={this.handleKeyDown.bind(this)}>
         <Header />
-        <TapasMap pins={this.props.pins} />
-        { this.props.activePin !== null ? <Overlay /> : null }
-      </AppWrapper>
+        <AppWindow>
+          <TapasMap pins={this.props.pins} listening={mapListening} />
+          { place ? <Overlay place={place} /> : null }
+        </AppWindow>
+      </div>
     );
   }
 }
@@ -35,11 +49,11 @@ class App extends React.Component {
 function mapStateToProps(state) {
   return {
     pins: state.pins,
-    activePin: state.activePin,
+    currentPin: state.currentPin,
   };
 }
 
 export default connect(
   mapStateToProps,
-  { loadPins },
+  { loadPins, setCurrentPin, },
 )(App);

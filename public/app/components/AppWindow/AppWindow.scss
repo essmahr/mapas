@@ -1,0 +1,9 @@
+@import '../../../styles/resources';
+
+.app-window {
+  position: relative;
+  flex: 0 1 auto;
+  height: 100%;
+  border: 4px solid $black;
+  overflow: hidden;
+}

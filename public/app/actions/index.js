@@ -13,11 +13,20 @@ export function loadPins() {
 }
 
 
-export const ACTIVE_PIN_CHANGE = 'ACTIVE_PIN_CHANGE';
+export const PIN_CHANGE = 'PIN_CHANGE';
 
-export function setActivePin(id) {
+export function setCurrentPin(id) {
   return {
-    type: ACTIVE_PIN_CHANGE,
+    type: PIN_CHANGE,
+    id,
+  }
+}
+
+export const TAPAS_CHANGE = 'TAPAS_CHANGE';
+
+export function setCurrentTapas(id) {
+  return {
+    type: TAPAS_CHANGE,
     id,
   }
 }
