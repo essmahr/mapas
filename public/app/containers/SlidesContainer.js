@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TapasSlides from '../components/TapasSlides/TapasSlides';
+// import TapasSlides from '../components/TapasSlides/TapasSlides';
 
-import { setCurrentTapas } from '../actions';
+import { setCurrentTapa } from '../actions';
 
 class SlidesContainer extends React.Component {
   onNextSlide(evt) {
-    const {currentTapas, tapas, changeTapas} = this.props;
+    const {currentTapas, tapas, changeTapa} = this.props;
     const newIndex = (currentTapas + 1) === tapas.length
       ? 0
       : currentTapas + 1;
 
-    changeTapas(newIndex);
+    changeTapa(newIndex);
   }
 
   onPrevSlide(evt) {
@@ -20,7 +20,7 @@ class SlidesContainer extends React.Component {
       ? tapas.length - 1
       : currentTapas - 1;
 
-    changeTapas(newIndex);
+    changeTapa(newIndex);
   }
 
   handleKeyDown(evt) {
@@ -41,26 +41,21 @@ class SlidesContainer extends React.Component {
   }
 
   render() {
-    return (
-      <TapasSlides
-        onKeyDown={this.handleKeyDown.bind(this)}
-        slides={this.props.tapas}
-        currentTapas={this.props.currentTapas} />
-    );
+    return null;
   }
 }
 
 function mapStateToProps(state) {
   return {
     tapas: state.pins[state.currentPin].tapas,
-    currentTapas: state.currentTapas,
+    currentTapa: state.currentTapa,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeTapas: (index) => {
-      dispatch(setCurrentTapas(index));
+    changeTapa: (index) => {
+      dispatch(setCurrentTapa(index));
     }
   }
 }

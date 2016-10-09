@@ -24,7 +24,7 @@ export function setCurrentPin(id) {
 
 export const TAPAS_CHANGE = 'TAPAS_CHANGE';
 
-export function setCurrentTapas(id) {
+export function setCurrentTapa(id) {
   return {
     type: TAPAS_CHANGE,
     id,

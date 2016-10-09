@@ -1,3 +1,6 @@
+$body-font: 'Work Sans';
+$heading-font: $body-font;
+
 $ocean: #7DCDCD;
 $black: #040403;
 $orange: #E6AF2E;
@@ -5,4 +8,24 @@ $grey-light: #E9E7E3;
 $grey: #D8DBE2;
 $grey-dark: #373F51;
 
-$gutter: 30px;
+$gutter: 20px;
+
+%heading1 {
+  font-family: $heading-font;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.2;
+}
+
+%heading2 {
+  font-family: $heading-font;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+%smallcaps {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}

@@ -1,0 +1,52 @@
+@import '../../../styles/resources';
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  width: 500px;
+  height: calc(100% + #{$gutter});
+  margin: 0 ($gutter * -1) ($gutter * -1) 0;
+}
+
+.list-heading {
+  flex: 0 0 auto;
+  padding: 0 0 $gutter;
+  margin: 0 $gutter;
+}
+
+.list {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-y: auto;
+  padding: 0 $gutter;
+}
+
+.link {
+  display: block;
+}
+
+.title {
+  @extend %heading1;
+  color: $orange;
+}
+
+.detail {
+  @extend %smallcaps;
+  display: inline-block;
+  color: $grey-dark;
+
+  strong {
+    font-weight: 600;
+    color: $black;
+  }
+}
+
+.separator {
+  @extend %smallcaps;
+  display: inline-block;
+  margin: 0 0.5em;
+  color: $grey;
+}

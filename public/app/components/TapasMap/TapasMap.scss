@@ -1,5 +1,8 @@
 @import '../../../styles/resources';
 
 .map {
+  flex: 1 1 auto;
+  width: 100%;
   position: relative;
+  height: 100%;
 }

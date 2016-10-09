@@ -1,0 +1,33 @@
+.image-container {
+  position: relative;
+  padding-top: 100%;
+
+  img {
+    display: none;
+  }
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: opacity 0.3s ease;
+}
+
+.unloaded {
+  composes: image;
+  opacity: 0;
+}
+
+.loaded {
+  composes: image;
+  opacity: 1;
+}
+
+.empty {
+  opacity: 0;
+}

@@ -1,9 +1,11 @@
 @import '../../../styles/resources';
 
 .app-window {
+  display: flex;
   position: relative;
   flex: 0 1 auto;
+  order: 2;
   height: 100%;
-  border: 4px solid $black;
   overflow: hidden;
+  padding: $gutter;
 }

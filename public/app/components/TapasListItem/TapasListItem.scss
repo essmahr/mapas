@@ -1,0 +1,54 @@
+@import '../../../styles/resources';
+
+.container {
+  margin-bottom: $gutter * 3;
+
+  &:last-child {
+    margin-bottom: $gutter * 2;
+  }
+}
+
+.info {
+  display: block;
+}
+
+.image {
+  display: block;
+  position: relative;
+  margin-bottom: $gutter / 2;
+}
+
+.rating-container {
+  padding: ($gutter / 4) ($gutter / 2);
+  position: absolute;
+  bottom: $gutter / 2;
+  right: $gutter / 2;
+  background: white;
+  color: $ocean;
+}
+
+.rating {
+  font-weight: 600;
+  color: $orange;
+}
+
+.slash {
+  display: inline-block;
+  margin: 0 0.25em;
+  color: $grey;
+}
+
+.outof {
+  color: $grey;
+}
+
+.title {
+  @extend %heading2;
+  color: $ocean;
+  margin: 0.25em 0;
+}
+
+.date {
+  @extend %smallcaps;
+  color: $grey-dark;
+}

@@ -3,6 +3,7 @@
 
 html {
   box-sizing: border-box;
+  font-size: 14px;
 }
 
 html,
@@ -20,12 +21,27 @@ body {
 
 body {
   color: $black;
-  font-size: 14px;
+  font-family: $body-font;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+img {
+  max-width: 100%;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
-  padding: 0 $gutter $gutter;
+  // padding: $gutter $gutter 0;
   height: 100%;
 }

@@ -1,4 +1,4 @@
-function currentTapasReducer(state = 0, action) {
+function currentTapaReducer(state = null, action) {
 
   if (action.type === 'TAPAS_CHANGE') {
     return action.id;
@@ -7,4 +7,4 @@ function currentTapasReducer(state = 0, action) {
   return state;
 }
 
-export default currentTapasReducer;
+export default currentTapaReducer;
