@@ -5,7 +5,7 @@ import { loadPins, setCurrentPin, } from '../actions';
 import TapasMap from '../components/TapasMap/TapasMap';
 import Header from '../components/Header/Header';
 import AppWindow from '../components/AppWindow/AppWindow';
-import TapasList from '../components/TapasList/TapasList';
+import TapasListContainer from '../containers/TapasListContainer';
 
 import styles from '../../styles/base.scss';
 
@@ -20,13 +20,6 @@ class App extends React.Component {
     this.props.loadPins();
   }
 
-  handleKeyDown(evt) {
-    console.log('hey');
-    if (evt.key === 'Escape' && this.props.currentPin !== null) {
-      this.props.setCurrentPin(null);
-    }
-  }
-
   setCurrentTapa(id) {
     this.props.setCurrentTapa(id);
   }
@@ -39,10 +32,10 @@ class App extends React.Component {
     const mapListening = this.props.currentPin === null;
 
     return (
-      <div className={styles.wrapper} onKeyDown={this.handleKeyDown.bind(this)}>
+      <div className={styles.wrapper}>
         <AppWindow>
           <TapasMap pins={this.props.pins} listening={mapListening} />
-          { place ? <TapasList place={place} onTapaSelect={this.setCurrentTapa.bind(this)} /> : null }
+          { place ? <TapasListContainer place={place} /> : null }
         </AppWindow>
       </div>
     );

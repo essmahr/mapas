@@ -4,9 +4,6 @@ import styles from './TapasList.scss';
 import TapasListItem from '../TapasListItem/TapasListItem';
 
 class TapasList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   onClick(index) {
     this.props.onTapaSelect(index);
@@ -31,6 +28,7 @@ class TapasList extends React.Component {
 
     return (
       <section styleName='list-container'>
+        <ListNav onNavClick={this.props.onNavClick} />
         <header styleName='list-heading'>
           <h1 styleName='title'>{place.title}</h1>
           <h2 styleName='detail'>Visited <VisitCount count={visitCount}/></h2>
@@ -43,6 +41,16 @@ class TapasList extends React.Component {
       </section>
     );
   }
+}
+
+function ListNav(props) {
+  return (
+    <nav>
+      <button onClick={() => props.onNavClick('prev')}>prev</button>
+      <button onClick={() => props.onNavClick('next')}>next</button>
+      <button onClick={() => props.onNavClick('close')}>cose</button>
+    </nav>
+  );
 }
 
 function VisitCount(props) {
