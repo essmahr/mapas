@@ -3,10 +3,14 @@
 .list-container {
   display: flex;
   flex-direction: column;
-  flex: 0 1 auto;
-  width: 500px;
+  flex: 0 0 auto;
+  width: calc(50vw + #{$gutter/2});
   height: calc(100% + #{$gutter});
   margin: 0 ($gutter * -1) ($gutter * -1) 0;
+
+  @media screen and (min-width: $screen-medium) {
+    width: calc(40vw + #{$gutter/2});
+  }
 }
 
 .list-heading {
