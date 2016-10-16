@@ -44,7 +44,7 @@ class TapasList extends React.Component {
 }
 
 function ListNav(props) {
-  const strokeWidth = 4;
+  const strokeWidth = 5;
 
   return (
     <nav className={props.styles['nav']}>

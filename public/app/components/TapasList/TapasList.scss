@@ -14,19 +14,19 @@
 }
 
 .nav {
-  margin: 0 $gutter ($gutter / 2);
+  margin: 0 $gutter;
   display: flex;
   flex: 0 0 auto;
-  // justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .button {
   @extend %reset-button;
   flex: 0 0 auto;
   padding: 6px;
-  margin-right: $gutter / 2;
   font-size: 18px;
-  border: 1px solid $grey;
+  border-radius: 3px;
+  margin-left: $gutter / 2;
 
   svg {
     width: 10px;
@@ -40,7 +40,7 @@
   }
 
   &:hover {
-    border-color: darken($grey, 6%);
+    background: mix($grey-light, #fff, 20%);
 
     polyline,
     line {
@@ -59,7 +59,7 @@
 
 .close {
   composes: button;
-  margin-left: auto;
+  // margin-left: auto;
 }
 
 .list-heading {
