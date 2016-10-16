@@ -29,12 +29,10 @@ class App extends React.Component {
       ? this.props.pins[this.props.currentPin]
       : false;
 
-    const mapListening = this.props.currentPin === null;
-
     return (
       <div className={styles.wrapper}>
         <AppWindow>
-          <TapasMap pins={this.props.pins} listening={mapListening} />
+          <TapasMap pins={this.props.pins} activePin={this.props.currentPin} />
           { place ? <TapasListContainer place={place} /> : null }
         </AppWindow>
       </div>

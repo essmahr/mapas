@@ -18,23 +18,28 @@ class TapasMap extends React.Component {
 
   pins() {
     return this.props.pins.map((pin, idx) => {
+      const isActive = this.props.activePin === idx;
+
       return <PinContainer
         id={idx}
         lat={pin.latitude}
         lng={pin.longitude}
         key={idx}
+        isActive={isActive}
         />
     });
   }
 
   render() {
+    const mapListening = this.props.activePin !== null;
+
     const center = [37.1772127, -3.5921333];
 
-    const zoom = 16;
+    const zoom = 12;
 
     const options = {
       styles: mapStyles,
-      keyboardShortcuts: this.props.listening,
+      keyboardShortcuts: mapListening,
     };
 
     return (

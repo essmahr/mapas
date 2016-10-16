@@ -11,14 +11,12 @@ const Pin = function(props) {
   }
 
   return (
-    <TapasPin onClick={onClick} />
+    <TapasPin onClick={onClick} isActive={props.isActive} />
   );
 }
 
 function mapStateToProps(state) {
-  return {
-    isActive: state.isActive,
-  }
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {
