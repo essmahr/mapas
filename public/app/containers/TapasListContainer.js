@@ -71,7 +71,7 @@ class TapasListContainer extends React.Component {
     window.addEventListener('keydown', this.handleKeyDown);
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKeyDown);
   }
 
