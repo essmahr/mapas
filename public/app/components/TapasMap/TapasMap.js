@@ -5,7 +5,7 @@ import mapStyles from 'json!../../config/mapStyles.json';
 
 import styles from './TapasMap.scss';
 
-import PinContainer from '../../containers/Pin';
+import PinContainer from '../../containers/PinContainer';
 
 class TapasMap extends React.Component {
   static propTypes = {

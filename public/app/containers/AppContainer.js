@@ -31,6 +31,7 @@ class App extends React.Component {
 
     return (
       <div className={styles.wrapper}>
+        <Header />
         <AppWindow>
           <TapasMap pins={this.props.pins} activePin={this.props.currentPin} />
           { place ? <TapasListContainer place={place} /> : null }

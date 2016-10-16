@@ -77,9 +77,7 @@ class TapasListContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <TapasList place={this.props.place} onNavClick={this.handleNavClick.bind(this)} />
-      </div>
+      <TapasList place={this.props.place} onNavClick={this.handleNavClick.bind(this)} />
     );
   }
 }

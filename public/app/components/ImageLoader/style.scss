@@ -1,7 +1,9 @@
+@import "../../../styles/resources";
+
 .image-container {
   position: relative;
   padding-top: 100%;
-  background-color: #eee;
+  background-color: $grey-light;
 
   img {
     display: none;

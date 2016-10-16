@@ -5,7 +5,9 @@ import styles from './Header.scss';
 const Header = function(props) {
   return (
     <header styleName='header'>
-      <h1 styleName='heading'>Mapas</h1>
+      <h1 styleName='heading'>
+        The Official 2016 Andalucian Tapas Tally
+      </h1>
     </header>
   );
 }

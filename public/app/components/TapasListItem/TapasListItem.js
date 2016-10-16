@@ -6,7 +6,7 @@ import ImageLoader from '../ImageLoader/ImageLoader';
 
 import styles from './TapasListItem.scss';
 
-const Tapa  = function(props) {
+const Tapa = function(props) {
   const {title, date, image, rating} = props.tapa;
   const eatenDate = dateformat(date, 'dddd, mmmm d');
 

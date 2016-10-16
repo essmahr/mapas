@@ -1,12 +1,16 @@
-@import '../../../styles/resources';
+@import "../../../styles/resources";
 
 .header {
   flex: 0 1 auto;
-  order: 3;
-  padding: 10px 0;
+  padding: $gutter;
+  color: $white;
+  line-height: $gutter + ($border-width * 2) + 2;
 }
 
 .heading {
-  font-size: 18px;
+  font-size: 16px;
+  // letter-spacing: 0.05em;
   font-weight: normal;
+  // text-transform: uppercase;
+  line-height: $gutter + ($border-width * 2) + 2;
 }

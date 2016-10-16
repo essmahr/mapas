@@ -1,0 +1,52 @@
+@import "../../../styles/resources";
+
+.nav {
+  position: fixed;
+  top: $gutter;
+  right: $gutter;
+  display: flex;
+}
+
+.button {
+  @extend %reset-button;
+  flex: 0 0 auto;
+  padding: 6px;
+  margin-bottom: $gutter / 2;
+  font-size: 18px;
+  background: transparent;
+  border-radius: 2px;
+  border: $border-width solid $white;
+  margin-left: $gutter / 2;
+
+  svg {
+    width: 10px;
+    height: 10px;
+    vertical-align: bottom;
+  }
+
+  polyline,
+  line {
+    stroke: $white;
+  }
+
+  &:hover {
+    background: $white;
+
+    polyline,
+    line {
+      stroke: $ocean;
+    }
+  }
+}
+
+.prev {
+  composes: button;
+}
+
+.next {
+  composes: button;
+}
+
+.close {
+  composes: button;
+}

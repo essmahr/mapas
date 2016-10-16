@@ -3,9 +3,10 @@
 .app-window {
   display: flex;
   position: relative;
-  flex: 0 1 auto;
-  order: 2;
+  flex: 1 1 auto;
   height: 100%;
-  overflow: hidden;
-  padding: $gutter;
+  margin: 0 $gutter $gutter;
+  background: white;
+  border-radius: 2px;
+  border: $border-width solid $white;
 }

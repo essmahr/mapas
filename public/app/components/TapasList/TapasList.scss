@@ -1,80 +1,32 @@
-@import '../../../styles/resources';
+@import "../../../styles/resources";
 
 .list-container {
+  position: relative;
   display: flex;
-  flex-direction: column;
   flex: 0 0 auto;
-  width: calc(50vw + #{$gutter/2});
-  height: calc(100% + #{$gutter});
-  margin: 0 ($gutter * -1) ($gutter * -1) 0;
+  flex-direction: column;
+  width: calc(50vw + #{$gutter / 2});
+  height: calc(100% + #{$border-width / 2});
+  margin-bottom: -1 * $border-width;
 
   @media screen and (min-width: $screen-medium) {
-    width: calc(40vw + #{$gutter/2});
+    width: calc(40vw + #{$gutter / 2});
   }
 }
 
-.nav {
-  margin: 0 $gutter;
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: flex-end;
-}
-
-.button {
-  @extend %reset-button;
-  flex: 0 0 auto;
-  padding: 6px;
-  font-size: 18px;
-  border-radius: 3px;
-  margin-left: $gutter / 2;
-
-  svg {
-    width: 10px;
-    height: 10px;
-    vertical-align: bottom;
-  }
-
-  polyline,
-  line {
-    stroke: $grey;
-  }
-
-  &:hover {
-    background: mix($grey-light, #fff, 20%);
-
-    polyline,
-    line {
-      stroke: darken($grey, 6%);
-    }
-  }
-}
-
-.prev {
-  composes: button;
-}
-
-.next {
-  composes: button;
-}
-
-.close {
-  composes: button;
-  // margin-left: auto;
-}
-
-.list-heading {
-  flex: 0 0 auto;
-  padding: 0 0 $gutter;
-  margin: 0 $gutter;
+.heading {
+  flex: 1 0 auto;
+  padding: $gutter;
+  border-bottom: $border-width solid $white;
 }
 
 .list {
+  position: relative;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  position: relative;
+  padding: $gutter $gutter 0;
   overflow-y: auto;
-  padding: 0 $gutter;
 }
 
 .link {
@@ -83,6 +35,7 @@
 
 .title {
   @extend %heading1;
+  margin-bottom: $gutter / 4;
   color: $orange;
 }
 
