@@ -13,6 +13,55 @@
   }
 }
 
+.nav {
+  margin: 0 $gutter ($gutter / 2);
+  display: flex;
+  flex: 0 0 auto;
+  // justify-content: flex-end;
+}
+
+.button {
+  @extend %reset-button;
+  flex: 0 0 auto;
+  padding: 6px;
+  margin-right: $gutter / 2;
+  font-size: 18px;
+  border: 1px solid $grey;
+
+  svg {
+    width: 10px;
+    height: 10px;
+    vertical-align: bottom;
+  }
+
+  polyline,
+  line {
+    stroke: $grey;
+  }
+
+  &:hover {
+    border-color: darken($grey, 6%);
+
+    polyline,
+    line {
+      stroke: darken($grey, 6%);
+    }
+  }
+}
+
+.prev {
+  composes: button;
+}
+
+.next {
+  composes: button;
+}
+
+.close {
+  composes: button;
+  margin-left: auto;
+}
+
 .list-heading {
   flex: 0 0 auto;
   padding: 0 0 $gutter;
