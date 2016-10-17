@@ -6,7 +6,7 @@
   flex: 0 0 auto;
   flex-direction: column;
   width: calc(50vw + #{$gutter / 2});
-  height: calc(100% + #{$border-width / 2});
+  height: calc(100% + #{$border-width});
   margin-bottom: -1 * $border-width;
 
   @media screen and (min-width: $screen-medium) {
@@ -35,7 +35,7 @@
 
 .title {
   @extend %heading1;
-  margin-bottom: $gutter / 4;
+  margin-bottom: $gutter / 2;
   color: $orange;
 }
 

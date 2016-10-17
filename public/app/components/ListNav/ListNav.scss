@@ -1,40 +1,74 @@
 @import "../../../styles/resources";
 
 .nav {
-  position: fixed;
-  top: $gutter;
-  right: $gutter;
   display: flex;
+
+  @media (max-width: $screen-medium - 1) {
+    flex: 0 0 auto;
+  }
+
+  @media (min-width: $screen-medium) {
+    position: fixed;
+    top: $gutter;
+    right: $gutter;
+  }
 }
 
 .button {
   @extend %reset-button;
   flex: 0 0 auto;
-  padding: 6px;
-  margin-bottom: $gutter / 2;
   font-size: 18px;
-  background: transparent;
+  padding: 6px;
   border-radius: 2px;
-  border: $border-width solid $white;
-  margin-left: $gutter / 2;
 
   svg {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     vertical-align: bottom;
   }
 
-  polyline,
-  line {
-    stroke: $white;
-  }
-
-  &:hover {
-    background: $white;
+  @media (max-width: $screen-medium - 1) {
+    flex: 1 0 auto;
+    background: $grey-light;
+    margin-left: $border-width;
 
     polyline,
     line {
-      stroke: $ocean;
+      stroke: $white;
+    }
+
+    // &:hover {
+    //   background: $white;
+
+    //   polyline,
+    //   line {
+    //     stroke: $ocean;
+    //   }
+    // }
+  }
+
+  @media (min-width: $screen-medium) {
+    background: transparent;
+    border: $border-width solid $white;
+    margin-left: $gutter / 2;
+
+    svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    polyline,
+    line {
+      stroke: $white;
+    }
+
+    &:hover {
+      background: $white;
+
+      polyline,
+      line {
+        stroke: $ocean;
+      }
     }
   }
 }
