@@ -31,7 +31,7 @@ class TapasMap extends React.Component {
   }
 
   render() {
-    const mapListening = this.props.activePin !== null;
+    const mapListening = this.props.activePin === null;
 
     const center = [37.1772127, -3.5921333];
 
@@ -41,6 +41,8 @@ class TapasMap extends React.Component {
       styles: mapStyles,
       keyboardShortcuts: mapListening,
     };
+
+    console.log(mapListening);
 
     return (
       <div styleName='map'>

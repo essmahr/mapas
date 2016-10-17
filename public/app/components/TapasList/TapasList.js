@@ -1,8 +1,12 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
-import styles from './TapasList.scss';
+import CSSTranstionGroup from 'react-addons-css-transition-group';
+
 import TapasListItem from '../TapasListItem/TapasListItem';
 import ListNav from '../ListNav/ListNav';
+
+import styles from './TapasList.scss';
+import transitions from '../../../styles/transitions.scss';
 
 class TapasList extends React.Component {
 
@@ -23,23 +27,54 @@ class TapasList extends React.Component {
       .length;
   }
 
-  render() {
-    const place = this.props.place;
+  firstChild(props) {
+    var childrenArray = React.Children.toArray(props.children);
+    return childrenArray[0] || null;
+  }
+
+  sidebar(place) {
     const visitCount = this.visitCount();
 
     return (
-      <section styleName='list-container'>
+      <section styleName='sidebar'>
         <ListNav onNavClick={this.props.onNavClick}/>
-        <header styleName='heading'>
-          <h1 styleName='title'>{place.title}</h1>
-          <h2 styleName='detail'>Visited <VisitCount count={visitCount}/></h2>
-          <span styleName='separator'>/</span>
-          <h2 styleName='detail'><strong>{place.tapas.length}</strong> tapa{place.tapas.length > 1 ? 's' : ''} total</h2>
-        </header>
-        <div styleName='list'>
-          {this.list()}
+        <div styleName="sidebar-inner">
+          <header styleName='heading'>
+            <h1 styleName='title'>{place.title}</h1>
+            <h2 styleName='detail'>Visited <VisitCount count={visitCount}/></h2>
+            <span styleName='separator'>/</span>
+            <h2 styleName='detail'><strong>{place.tapas.length}</strong> tapa{place.tapas.length > 1 ? 's' : ''} total</h2>
+          </header>
+          <div styleName='list'>
+            <div styleName='scroll-container'>
+              {this.list()}
+            </div>
+          </div>
         </div>
       </section>
+    );
+  }
+
+  render() {
+    const {styles, place} = this.props;
+
+    const transitionClasses = {
+      appear: styles['sidebar-enter'],
+      appearActive: styles['sidebar-enter-active'],
+      enter: styles['sidebar-enter'],
+      enterActive: styles['sidebar-enter-active'],
+      leave: styles['sidebar-leave'],
+      leaveActive: styles['sidebar-leave-active'],
+    }
+
+    return (
+        <CSSTranstionGroup
+          transitionName={transitionClasses}
+          transitionEnterTimeout={1000}
+          transitionLeaveTimeout={1000}
+          component={this.firstChild}>
+            {place ? this.sidebar(place) : null}
+          </CSSTranstionGroup>
     );
   }
 }

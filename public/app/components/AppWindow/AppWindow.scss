@@ -1,11 +1,17 @@
-@import '../../../styles/resources';
+@import "../../../styles/resources";
 
-.app-window {
+.outer {
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  margin: 0 $gutter $gutter;
+}
+
+.inner {
   display: flex;
   position: relative;
   flex: 1 1 auto;
   height: 100%;
-  margin: 0 $gutter $gutter;
   background: white;
   border-radius: 2px;
   border: $border-width solid $white;

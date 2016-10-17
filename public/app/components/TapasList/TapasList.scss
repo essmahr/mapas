@@ -1,17 +1,48 @@
 @import "../../../styles/resources";
 
-.list-container {
-  position: relative;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
+@mixin sidebar-widths {
   width: calc(50vw + #{$gutter / 2});
-  height: calc(100% + #{$border-width});
-  margin-bottom: -1 * $border-width;
 
   @media screen and (min-width: $screen-medium) {
     width: calc(40vw + #{$gutter / 2});
   }
+}
+
+.sidebar {
+  @include sidebar-widths;
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  height: calc(100% + #{$border-width});
+  margin-bottom: -1 * $border-width;
+  overflow: hidden;
+}
+
+.sidebar-enter {
+  width: 0;
+}
+
+.sidebar-enter-active {
+  @include sidebar-widths;
+  transition: all 0.4s $ease;
+}
+
+.sidebar-leave {
+  @include sidebar-widths;
+}
+
+.sidebar-leave-active {
+  width: 0;
+  transition: all 0.4s $ease;
+}
+
+.sidebar-inner {
+  @include sidebar-widths;
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  height: 100%;
 }
 
 .heading {
@@ -25,6 +56,10 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+}
+
+.scroll-container {
+  height: 100%;
   padding: $gutter $gutter 0;
   overflow-y: auto;
 }

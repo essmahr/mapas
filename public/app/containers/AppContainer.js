@@ -24,6 +24,11 @@ class App extends React.Component {
     this.props.setCurrentTapa(id);
   }
 
+  firstChild(props) {
+    var childrenArray = React.Children.toArray(props.children);
+    return childrenArray[0] || null;
+  }
+
   render() {
     const place = this.props.currentPin !== null
       ? this.props.pins[this.props.currentPin]
@@ -34,7 +39,7 @@ class App extends React.Component {
         <Header />
         <AppWindow>
           <TapasMap pins={this.props.pins} activePin={this.props.currentPin} />
-          { place ? <TapasListContainer place={place} /> : null }
+          <TapasListContainer place={place} />
         </AppWindow>
       </div>
     );

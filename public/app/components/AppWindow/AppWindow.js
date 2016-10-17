@@ -13,8 +13,10 @@ class AppContainer extends React.Component {
 
   render() {
     return (
-      <div styleName='app-window'>
-        {this.props.children}
+      <div styleName='outer'>
+        <div styleName='inner'>
+          {this.props.children}
+        </div>
       </div>
     );
   }

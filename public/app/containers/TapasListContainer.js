@@ -36,6 +36,8 @@ class TapasListContainer extends React.Component {
   }
 
   handleKeyDown(evt) {
+    if (this.props.currentPin === null) return;
+
     switch (evt.key) {
       case 'ArrowRight':
         this.onNextPin();

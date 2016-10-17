@@ -1,22 +1,40 @@
 @import '../../../styles/resources';
 
 .pin {
+  position: relative;
   width: 16px;
   height: 16px;
   border-radius: 50%;
   background: $orange;
   border: 1px solid darken($orange, 5%);
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  background-clip: content-box;
 
   &:hover {
     cursor: pointer;
+  }
+
+  &::after {
+    position: absolute;
+    top: -17px;
+    left: -17px;
+    display: block;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba($black, 0.1);
+    content: "";
+    z-index: -1;
+    transform: scale(0);
+    transition: all 0.2s $ease;
   }
 }
 
 .active {
   composes: pin;
-  width: 20px;
-  height: 20px;
-  border-width: 4px;
-  transform: translate3d(-2px, -2px, 0);
+  border-color: darken($orange, 10%);
+
+  &::after {
+    transform: scale(1);
+  }
 }
