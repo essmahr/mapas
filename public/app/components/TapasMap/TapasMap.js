@@ -37,17 +37,20 @@ class TapasMap extends React.Component {
 
     const zoom = 12;
 
-    const options = {
-      styles: mapStyles,
-      keyboardShortcuts: mapListening,
+    function createOptions(map) {
+      return {
+        styles: mapStyles,
+        keyboardShortcuts: mapListening,
+        zoomControlOptions: {
+          position: map.ControlPosition.LEFT_BOTTOM,
+        },
+      }
     };
-
-    console.log(mapListening);
 
     return (
       <div styleName='map'>
         <GoogleMap
-          options={options}
+          options={createOptions}
           defaultCenter={center}
           defaultZoom={zoom}>
           {this.pins()}
