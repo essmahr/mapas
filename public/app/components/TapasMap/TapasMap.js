@@ -2,19 +2,19 @@ import React from 'react';
 import GoogleMap from 'google-map-react';
 import CSSModules from 'react-css-modules';
 import mapStyles from 'json!../../config/mapStyles.json';
+import { getPinCoords } from '../../lib/helpers';
 
 import styles from './TapasMap.scss';
 
 import PinContainer from '../../containers/PinContainer';
 
 class TapasMap extends React.Component {
+  defaultCenter = [37.1772127, -3.5921333];
+  defaultZoom = 12;
+
   static propTypes = {
     pins: React.PropTypes.array,
   };
-
-  constructor(props) {
-    super(props);
-  }
 
   pins() {
     return this.props.pins.map((pin, idx) => {
@@ -31,16 +31,21 @@ class TapasMap extends React.Component {
   }
 
   render() {
-    const mapListening = this.props.activePin === null;
+    const isZoomed = this.props.zoomed;
+    const isPinActive = this.props.activePin !== null;
 
-    const center = [37.1772127, -3.5921333];
+    const center = isZoomed && isPinActive
+      ? getPinCoords(this.props.pins[this.props.activePin])
+      : this.defaultCenter;
 
-    const zoom = 12;
+    const zoom = isZoomed
+      ? 13
+      : this.defaultZoom;
 
     function createOptions(map) {
       return {
         styles: mapStyles,
-        keyboardShortcuts: mapListening,
+        keyboardShortcuts: false,
         zoomControlOptions: {
           position: map.ControlPosition.LEFT_BOTTOM,
         },
@@ -49,12 +54,16 @@ class TapasMap extends React.Component {
 
     return (
       <div styleName='map'>
-        <GoogleMap
-          options={createOptions}
-          defaultCenter={center}
-          defaultZoom={zoom}>
-          {this.pins()}
-        </GoogleMap>
+        <div styleName='inner'>
+          <GoogleMap
+            options={createOptions}
+            defaultCenter={this.defaultCenter}
+            center={center}
+            resetBoundsOnResize={true}
+            zoom={zoom}>
+            {this.pins()}
+          </GoogleMap>
+        </div>
       </div>
     );
   }

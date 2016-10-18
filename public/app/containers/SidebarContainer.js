@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import TapasList from '../components/TapasList/TapasList';
+import SidebarParent from '../components/Sidebar/SidebarParent';
 
-import { setCurrentPin } from '../actions';
+import { setCurrentPin, zoomMap } from '../actions';
 
-class TapasListContainer extends React.Component {
+class SidebarContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -79,7 +79,7 @@ class TapasListContainer extends React.Component {
 
   render() {
     return (
-      <TapasList place={this.props.place} onNavClick={this.handleNavClick.bind(this)} />
+      <SidebarParent place={this.props.place} onNavClick={this.handleNavClick.bind(this)} />
     );
   }
 }
@@ -102,4 +102,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(TapasListContainer)
+)(SidebarContainer)

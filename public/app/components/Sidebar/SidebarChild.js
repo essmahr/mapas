@@ -1,18 +1,11 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
-import CSSTranstionGroup from 'react-addons-css-transition-group';
 
-import TapasListItem from '../TapasListItem/TapasListItem';
 import ListNav from '../ListNav/ListNav';
+import TapasListItem from '../TapasListItem/TapasListItem';
+import styles from './Sidebar.scss';
 
-import styles from './TapasList.scss';
-import transitions from '../../../styles/transitions.scss';
-
-class TapasList extends React.Component {
-
-  onClick(index) {
-    this.props.onTapaSelect(index);
-  }
+class SidebarChild extends React.Component {
 
   list() {
     return this.props.place.tapas.map((tapa, idx) => {
@@ -27,12 +20,12 @@ class TapasList extends React.Component {
       .length;
   }
 
-  firstChild(props) {
-    var childrenArray = React.Children.toArray(props.children);
-    return childrenArray[0] || null;
+  componentDidEnter() {
+    console.log('aha');
   }
 
-  sidebar(place) {
+  render() {
+    const place = this.props.place;
     const visitCount = this.visitCount();
 
     return (
@@ -52,29 +45,6 @@ class TapasList extends React.Component {
           </div>
         </div>
       </section>
-    );
-  }
-
-  render() {
-    const {styles, place} = this.props;
-
-    const transitionClasses = {
-      appear: styles['sidebar-enter'],
-      appearActive: styles['sidebar-enter-active'],
-      enter: styles['sidebar-enter'],
-      enterActive: styles['sidebar-enter-active'],
-      leave: styles['sidebar-leave'],
-      leaveActive: styles['sidebar-leave-active'],
-    }
-
-    return (
-        <CSSTranstionGroup
-          transitionName={transitionClasses}
-          transitionEnterTimeout={1000}
-          transitionLeaveTimeout={1000}
-          component={this.firstChild}>
-            {place ? this.sidebar(place) : null}
-          </CSSTranstionGroup>
     );
   }
 }
@@ -97,4 +67,4 @@ function VisitCount(props) {
   );
 }
 
-export default CSSModules(TapasList, styles);
+export default CSSModules(SidebarChild, styles);

@@ -14,13 +14,24 @@ export function loadPins() {
 
 
 export const PIN_CHANGE = 'PIN_CHANGE';
+export const MAP_ZOOM = 'MAP_ZOOM';
 
 export function setCurrentPin(id) {
-  return {
-    type: PIN_CHANGE,
-    id,
-  }
+  return function(dispatch) {
+    dispatch({
+      type: PIN_CHANGE,
+      id,
+    });
+
+    setTimeout(() => {
+      dispatch({
+        type: MAP_ZOOM,
+        zoomed: id !== null,
+      });
+    }, 500);
+  };
 }
+
 
 export const TAPAS_CHANGE = 'TAPAS_CHANGE';
 

@@ -9,6 +9,15 @@ const rootReducer = combineReducers({
   pinsLoaded,
   currentPin,
   currentTapa,
+  mapZoomed,
 });
+
+function mapZoomed(state = false, action) {
+  if (action.type === 'MAP_ZOOM') {
+    return action.zoomed;
+  }
+
+  return state;
+}
 
 export default rootReducer;

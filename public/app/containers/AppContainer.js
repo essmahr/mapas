@@ -5,7 +5,7 @@ import { loadPins, setCurrentPin, } from '../actions';
 import TapasMap from '../components/TapasMap/TapasMap';
 import Header from '../components/Header/Header';
 import AppWindow from '../components/AppWindow/AppWindow';
-import TapasListContainer from '../containers/TapasListContainer';
+import SidebarContainer from '../containers/SidebarContainer';
 
 import styles from '../../styles/base.scss';
 
@@ -30,16 +30,18 @@ class App extends React.Component {
   }
 
   render() {
-    const place = this.props.currentPin !== null
-      ? this.props.pins[this.props.currentPin]
+    const {currentPin, pins, mapZoomed} = this.props;
+
+    const place = currentPin !== null
+      ? pins[currentPin]
       : false;
 
     return (
       <div className={styles.wrapper}>
         <Header />
         <AppWindow>
-          <TapasMap pins={this.props.pins} activePin={this.props.currentPin} />
-          <TapasListContainer place={place} />
+          <TapasMap pins={pins} activePin={currentPin} zoomed={mapZoomed} />
+          <SidebarContainer place={place} />
         </AppWindow>
       </div>
     );
@@ -50,7 +52,7 @@ function mapStateToProps(state) {
   return {
     pins: state.pins,
     currentPin: state.currentPin,
-    currentTapa: state.currentTapa,
+    mapZoomed: state.mapZoomed,
   };
 }
 
