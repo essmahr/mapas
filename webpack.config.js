@@ -42,6 +42,10 @@ module.exports = {
     new OpenBrowserPlugin({ url: 'http://localhost:8080' }),
     new webpack.DefinePlugin({
       __ENV__: JSON.stringify(JSON.parse(process.env.NODE_ENV || 'false'))
+    }),
+    new webpack.ProvidePlugin({
+      Promise: 'imports?this=>global!exports?global.Promise!es6-promise',
+      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     })
   ]
 };
