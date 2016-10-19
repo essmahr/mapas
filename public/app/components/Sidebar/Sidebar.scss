@@ -24,7 +24,7 @@
 
 .sidebar-enter-active {
   @include sidebar-widths;
-  transition: all 0.4s $ease;
+  transition: all 0.3s $ease;
 }
 
 .sidebar-leave {
@@ -33,7 +33,7 @@
 
 .sidebar-leave-active {
   width: 0;
-  transition: all 0.4s $ease;
+  transition: all 0.3s $ease;
 }
 
 .sidebar-inner {

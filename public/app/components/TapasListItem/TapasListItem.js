@@ -2,6 +2,8 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 import dateformat from 'dateformat';
 
+import { DB_IMAGES_DIR } from '../../constants/paths';
+
 import ImageLoader from '../ImageLoader/ImageLoader';
 
 import styles from './TapasListItem.scss';
@@ -10,10 +12,12 @@ const Tapa = function(props) {
   const {title, date, image, rating} = props.tapa;
   const eatenDate = dateformat(date, 'dddd, mmmm d');
 
+  const imagePath = DB_IMAGES_DIR + image;
+
   return (
     <div styleName='container'>
       <div styleName='image'>
-        <ImageLoader src={image} />
+        <ImageLoader src={imagePath} />
 
         <div styleName='rating-container'>
           <span styleName='rating'>{rating}</span>

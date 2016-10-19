@@ -1,13 +1,17 @@
-const dataUrl = '/sampleData.json';
+import { DB_JSON_URL } from '../constants/paths';
+
+console.log(DB_JSON_URL);
 
 function callApi() {
-  return fetch(dataUrl)
+  return fetch(DB_JSON_URL)
     .then(response =>
       response.json().then((json) => ({ json, response }))
     ).then(({ json, response }) => {
       if (!response.ok) {
         return Promise.reject(response);
       }
+
+      console.log(json);
 
       return json;
     });
