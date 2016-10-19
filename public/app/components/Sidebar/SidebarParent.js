@@ -17,7 +17,7 @@ class SidebarParent extends React.Component {
   render() {
     const {styles, place} = this.props;
 
-    const transitionClasses = mapTransitionClasses(styles, 'sidebar');
+    const transitionClasses = mapTransitionClasses('sidebar');
 
     return (
         <CSSTransitionGroup

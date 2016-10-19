@@ -53,7 +53,7 @@ class TapasMap extends React.Component {
     // zoom in
     if (!this.props.zoomed && nextProps.zoomed) {
       this.setState({
-        zoom: this.defaultZoom + 1,
+        zoom: this.defaultZoom + 2,
         center: getPinCoords(this.props.pins[this.props.activePin]),
       });
     }

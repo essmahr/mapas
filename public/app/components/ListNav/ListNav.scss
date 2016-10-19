@@ -11,7 +11,30 @@
     position: fixed;
     top: $gutter;
     right: $gutter;
+
+    :global(.sidebar-enter) & {
+      opacity: 0;
+      transform: translateX(50%);
+    }
+
+    :global(.sidebar-enter-active) & {
+      opacity: 1;
+      transform: translateX(0);
+      transition: all 0.3s ease-out 0.1s;
+    }
+
+    :global(.sidebar-leave) & {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    :global(.sidebar-leave-active) & {
+      opacity: 0;
+      transform: translateX(50%);
+      transition: all 0.3s ease-in;
+    }
   }
+
 }
 
 .button {

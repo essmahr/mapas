@@ -5,14 +5,14 @@ function getPinCoords(pin) {
   }
 }
 
-function mapTransitionClasses(styles, className) {
+function mapTransitionClasses(className) {
   return {
-    appear: styles[`${className}-enter`],
-    appearActive: styles[`${className}-enter-active`],
-    enter: styles[`${className}-enter`],
-    enterActive: styles[`${className}-enter-active`],
-    leave: styles[`${className}-leave`],
-    leaveActive: styles[`${className}-leave-active`],
+    appear: `${className}-enter`,
+    appearActive: `${className}-enter-active`,
+    enter: `${className}-enter`,
+    enterActive: `${className}-enter-active`,
+    leave: `${className}-leave`,
+    leaveActive: `${className}-leave-active`,
   }
 }
 
