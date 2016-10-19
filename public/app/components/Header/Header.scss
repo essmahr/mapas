@@ -1,14 +1,17 @@
 @import "../../../styles/resources";
 
 .header {
+  display: flex;
   flex: 0 1 auto;
   padding: $gutter;
   color: $black;
+  align-items: center;
 }
 
 .heading {
-  font-size: 16px;
-  font-weight: normal;
+  font-family: $heading-font;
+  font-size: 18px;
+  font-weight: 400;
   line-height: $gutter + ($border-width * 2) + 2;
 
   @media (max-width: $screen-medium - 1) {
@@ -18,4 +21,13 @@
   @media (min-width: $screen-medium) {
 
   }
+}
+
+.icon {
+  position: relative;
+  top: -1px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  vertical-align: middle;
 }

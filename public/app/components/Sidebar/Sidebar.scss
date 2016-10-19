@@ -78,7 +78,7 @@
 
 .scroll-container {
   height: 100%;
-  padding: $gutter $gutter 0;
+  padding: 0 $gutter;
   overflow-y: auto;
 }
 
@@ -88,8 +88,8 @@
 
 .title {
   @extend %heading1;
-  margin-bottom: $gutter / 2;
-  color: $orange;
+  margin: 6px 0 ($gutter / 2);
+  color: $cadet;
 }
 
 .detail {

@@ -1,8 +1,8 @@
-$body-font: "Work Sans";
-$heading-font: $body-font;
+$body-font: "Roboto";
+$heading-font: "Source Serif Pro";
 
 $white: #FFFFFF;
-$ocean: #7DCDCD;
+$cadet: #6195a0;
 $black: #040403;
 $orange: #E6AF2E;
 $grey-light: #F5F5F2;
@@ -31,15 +31,18 @@ $ease: cubic-bezier(0.645, 0.045, 0.355, 1.000);
 
 %heading1 {
   font-family: $heading-font;
-  font-size: 36px;
-  font-weight: 700;
+  font-size: 40px;
+  font-weight: 600;
   line-height: 1;
+  letter-spacing: -0.025em;
+  -webkit-font-smoothing: antialiased;
 }
 
 %heading2 {
   font-family: $heading-font;
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
 }
 
 %smallcaps {
