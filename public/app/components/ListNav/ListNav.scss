@@ -17,8 +17,8 @@
 .button {
   @extend %reset-button;
   flex: 0 0 auto;
-  font-size: 18px;
   padding: 6px;
+  font-size: 18px;
   border-radius: 2px;
 
   svg {
@@ -29,8 +29,8 @@
 
   @media (max-width: $screen-medium - 1) {
     flex: 1 0 auto;
-    background: $grey-light;
     margin-left: $border-width;
+    background: $grey-light;
 
     polyline,
     line {
@@ -48,9 +48,9 @@
   }
 
   @media (min-width: $screen-medium) {
-    background: transparent;
-    border: $border-width solid $white;
     margin-left: $gutter / 2;
+    background: transparent;
+    border: $border-width solid $grey-light;
 
     svg {
       width: 10px;
@@ -59,15 +59,16 @@
 
     polyline,
     line {
-      stroke: $white;
+      stroke: $grey;
     }
 
     &:hover {
-      background: $white;
+      background: $grey;
+      border-color: $grey;
 
       polyline,
       line {
-        stroke: $ocean;
+        stroke: $white;
       }
     }
   }

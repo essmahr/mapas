@@ -6,7 +6,7 @@
   height: 16px;
   border-radius: 50%;
   background: $orange;
-  border: 1px solid darken($orange, 5%);
+  border: 2px solid darken($orange, 5%);
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   background-clip: content-box;
 
@@ -16,8 +16,8 @@
 
   &::after {
     position: absolute;
-    top: -17px;
-    left: -17px;
+    top: -18px;
+    left: -18px;
     display: block;
     width: 48px;
     height: 48px;
