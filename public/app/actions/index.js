@@ -16,19 +16,24 @@ export function loadPins() {
 export const PIN_CHANGE = 'PIN_CHANGE';
 export const MAP_ZOOM = 'MAP_ZOOM';
 
-export function setCurrentPin(id) {
-  return function(dispatch) {
+export function setCurrentPin(nextPin) {
+  return function(dispatch, getState) {
+    const prevPin = getState().currentPin;
+
     dispatch({
       type: PIN_CHANGE,
-      id,
+      id: nextPin,
     });
 
-    setTimeout(() => {
-      dispatch({
-        type: MAP_ZOOM,
-        zoomed: id !== null,
-      });
-    }, 500);
+    // don't fire map zoom on change between pins
+    if (prevPin === null || nextPin === null) {
+      setTimeout(() => {
+        dispatch({
+          type: MAP_ZOOM,
+          zoomed: nextPin !== null,
+        });
+      }, 2000);
+    }
   };
 }
 

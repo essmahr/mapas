@@ -1,4 +1,6 @@
 function getPinCoords(pin) {
+  if (!pin) return false;
+
   return {
     lat: pin.latitude,
     lng: pin.longitude,

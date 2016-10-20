@@ -20,10 +20,6 @@ class SidebarChild extends React.Component {
       .length;
   }
 
-  componentDidEnter() {
-    console.log('aha');
-  }
-
   render() {
     const place = this.props.place;
     const visitCount = this.visitCount();

@@ -10,7 +10,7 @@ import PinContainer from '../../containers/PinContainer';
 
 class TapasMap extends React.Component {
   defaultCenter = [37.1772127, -3.5921333];
-  defaultZoom = 12;
+  defaultZoom = 13;
 
   static propTypes = {
     pins: React.PropTypes.array,
@@ -41,22 +41,31 @@ class TapasMap extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    // zoom out
-    if (this.props.zoomed && !nextProps.zoomed) {
-      this.setState({
-        zoom: this.defaultZoom,
-        center: this.defaultCenter,
-      });
-    }
+  triggerResize() {
+    var evt = document.createEvent('UIEvents');
+    evt.initUIEvent('resize', true, false, window, 0);
+    window.dispatchEvent(evt);
+  }
 
-    // zoom in
-    if (!this.props.zoomed && nextProps.zoomed) {
-      this.setState({
-        zoom: this.defaultZoom + 2,
-        center: getPinCoords(this.props.pins[this.props.activePin]),
-      });
-    }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.pins.length === 0) return;
+
+    const zoomChange = this.props.zoomed !== nextProps.zoomed;
+    const zoomInStart = !zoomChange && this.props.activePin === null && nextProps.activePin !== null;
+    const zoomInEnd = zoomChange && this.props.activePin !== null;
+    const zoomOutStart = !zoomChange && this.props.activePin !== null && nextProps.activePin === null;
+    const zoomOutEnd = zoomChange && this.props.activePin === null;
+
+    const zoom = (zoomOutEnd || zoomInStart)
+      ? this.defaultZoom
+      : this.defaultZoom + 2
+
+    const center = (zoomOutEnd || zoomInStart)
+      ? this.defaultCenter
+      : getPinCoords(nextProps.pins[nextProps.activePin])
+        || getPinCoords(this.props.pins[this.props.activePin]);
+
+    this.setState({zoom, center});
   }
 
   render() {

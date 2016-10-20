@@ -1,7 +1,5 @@
 import { DB_JSON_URL } from '../constants/paths';
 
-console.log(DB_JSON_URL);
-
 function callApi() {
   return fetch(DB_JSON_URL)
     .then(response =>
@@ -10,8 +8,6 @@ function callApi() {
       if (!response.ok) {
         return Promise.reject(response);
       }
-
-      console.log(json);
 
       return json;
     });
