@@ -32,7 +32,7 @@ export function setCurrentPin(nextPin) {
           type: MAP_ZOOM,
           zoomed: nextPin !== null,
         });
-      }, 2000);
+      }, 600);
     }
   };
 }

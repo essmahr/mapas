@@ -41,12 +41,6 @@ class TapasMap extends React.Component {
     });
   }
 
-  triggerResize() {
-    var evt = document.createEvent('UIEvents');
-    evt.initUIEvent('resize', true, false, window, 0);
-    window.dispatchEvent(evt);
-  }
-
   componentWillReceiveProps(nextProps) {
     if (this.props.pins.length === 0) return;
 
@@ -56,7 +50,7 @@ class TapasMap extends React.Component {
     const zoomOutStart = !zoomChange && this.props.activePin !== null && nextProps.activePin === null;
     const zoomOutEnd = zoomChange && this.props.activePin === null;
 
-    const zoom = (zoomOutEnd || zoomInStart)
+    const zoom = zoomInStart
       ? this.defaultZoom
       : this.defaultZoom + 2
 
