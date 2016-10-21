@@ -4,9 +4,8 @@
   "description": "",
   "main": "app/main.jsx",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack-dev-server --devtool eval --progress --hot",
-    "deploy": "NODE_ENV=production webpack -p --config webpack.production.config.js"
+    "build": "NODE_ENV=production webpack",
+    "start": "NODE_ENV=development webpack-dev-server --devtool eval --progress --hot"
   },
   "dependencies": {
     "babel-runtime": "6.x",
@@ -35,9 +34,10 @@
     "babel-preset-react": "6.x",
     "babel-preset-stage-0": "6.x",
     "copy-webpack-plugin": "latest",
-    "exports-loader": "^0.6.3",
-    "imports-loader": "^0.6.5",
     "css-loader": "~0.23.0",
+    "exports-loader": "^0.6.3",
+    "html-webpack-plugin": "^2.24.0",
+    "imports-loader": "^0.6.5",
     "json-loader": "^0.5.4",
     "node-sass": "^3.10.0",
     "open-browser-webpack-plugin": "0.0.2",

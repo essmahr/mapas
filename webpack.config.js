@@ -1,8 +1,57 @@
 var webpack = require('webpack');
 var path = require('path');
+var merge = require('webpack-merge');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+var isProduction = process.env.NODE_ENV === 'production';
+
+var cssHash = isProduction
+  ? '[hash:base64:5]'
+  : '[name]_[local]_[hash:base64:5]';
+
+var common = {
+  entry: [
+    path.resolve(__dirname, './public/app/index.js')
+  ],
+  output: {
+    path: __dirname + '/build',
+    publicPath: '/',
+    filename: './bundle.js'
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style?sourceMap',
+          'css?modules&importLoaders=1&localIdentName=' + cssHash,
+          'sass?sourceMap'
+        ]
+      },
+      { test: /\.js$/,
+        include: path.resolve(__dirname, 'public/app'),
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.ejs',
+      inject: 'body'
+    }),
+    new webpack.ProvidePlugin({
+      Promise: 'imports?this=>global!exports?global.Promise!es6-promise',
+      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    })
+  ]
+}
+
+var dev = {
   devServer: {
     historyApiFallback: true,
     hot: true,
@@ -15,37 +64,30 @@ module.exports = {
   entry: [
     'webpack/hot/dev-server',
     'webpack-dev-server/client?http://localhost:8080',
-    path.resolve(__dirname, './public/app/index.js')
   ],
-  output: {
-    path: __dirname + '/build',
-    publicPath: '/',
-    filename: './bundle.js'
-  },
-  module: {
-    loaders:[
-      {
-        test: /\.scss$/,
-        loaders: [
-          'style?sourceMap',
-          'css?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]',
-          'sass?sourceMap'
-        ]
-      },
-      { test: /\.js$/,
-        include: path.resolve(__dirname, 'public/app'), exclude: /node_modules/, loader: 'babel-loader'
-      }
-    ]
-  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new OpenBrowserPlugin({ url: 'http://localhost:8080' }),
+  ]
+}
+
+var production = {
+  plugins: [
+    new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
-      __ENV__: JSON.stringify(JSON.parse(process.env.NODE_ENV || 'false'))
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
     }),
-    new webpack.ProvidePlugin({
-      Promise: 'imports?this=>global!exports?global.Promise!es6-promise',
-      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
     })
   ]
-};
+}
+
+module.exports = merge(
+  common,
+  isProduction ? production : dev
+);

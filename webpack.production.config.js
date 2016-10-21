@@ -14,8 +14,19 @@ module.exports = {
   },
   module: {
     loaders:[
-      { test: /\.css$/, include: path.resolve(__dirname, 'app'), loader: 'style-loader!css-loader' },
-      { test: /\.js[x]?$/, include: path.resolve(__dirname, 'app'), exclude: /node_modules/, loader: 'babel-loader' },
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style?sourceMap',
+          'css?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]',
+          'sass?sourceMap'
+        ]
+      },      {
+        test: /\.js[x]?$/,
+        include: path.resolve(__dirname, 'app'),
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
     ]
   },
   resolve: {
@@ -28,9 +39,9 @@ module.exports = {
         warnings: false
       }
     }),
-    new CopyWebpackPlugin([
-      { from: './app/index.html', to: 'index.html' },
-      { from: './app/main.css', to: 'main.css' }
-    ]),
+    new HtmlWebpackPlugin({
+      template: 'index.ejs',
+      inject: 'body'
+    })
   ]
 };
