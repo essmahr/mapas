@@ -3,7 +3,7 @@ import GoogleMap from 'google-map-react';
 import CSSModules from 'react-css-modules';
 import mapStyles from 'json!../../config/mapStyles.json';
 import { getPinCoords } from '../../lib/helpers';
-
+import { MAPS_API_KEY } from '../../config/env';
 import styles from './TapasMap.scss';
 
 import PinContainer from '../../containers/PinContainer';
@@ -77,6 +77,7 @@ class TapasMap extends React.Component {
       <div styleName='map'>
         <div styleName='inner'>
           <GoogleMap
+            bootstrapURLKeys={{key: MAPS_API_KEY}}
             options={createOptions}
             defaultCenter={this.defaultCenter}
             center={this.state.center}

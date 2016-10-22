@@ -17,7 +17,7 @@ var common = {
   output: {
     path: __dirname + '/build',
     publicPath: '/',
-    filename: './bundle.js'
+    filename: 'bundle.js'
   },
   module: {
     loaders: [

@@ -2,3 +2,4 @@
 node_modules
 npm-debug.log
 build
+public/app/config/env.js
