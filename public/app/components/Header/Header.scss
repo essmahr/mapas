@@ -2,30 +2,42 @@
 
 .header {
   display: flex;
+  align-items: center;
   flex: 0 1 auto;
   padding: $gutter;
   color: $black;
-  align-items: center;
 }
 
 .heading {
   @extend %smallcaps;
-  line-height: $gutter + ($border-width * 2) + 2;
 
   @media (max-width: $screen-medium - 1) {
+    line-height: 1.4;
     text-align: center;
   }
 
   @media (min-width: $screen-medium) {
+    line-height: $gutter + ($border-width * 2) + 2;
 
+    br {
+      display: none;
+    }
   }
 }
 
 .icon {
   position: relative;
   top: -1px;
-  width: 16px;
-  height: 16px;
   margin-right: 10px;
   vertical-align: middle;
+
+  @media (max-width: $screen-medium - 1) {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (min-width: $screen-medium) {
+    width: 16px;
+    height: 16px;
+  }
 }
