@@ -1,13 +1,5 @@
 @import "../../../styles/resources";
 
-@mixin sidebar-widths {
-  width: calc(50vw + #{$gutter / 2});
-
-  @media screen and (min-width: $screen-medium) {
-    width: calc(40vw + #{$gutter / 2});
-  }
-}
-
 .sidebar {
   @include sidebar-widths;
   position: relative;
@@ -15,7 +7,8 @@
   flex: 0 0 auto;
   flex-direction: column;
   height: 100%;
-  overflow: hidden;
+  z-index: 2;
+  background-color: $white;
 
   &:global(.sidebar-enter) {
     width: 0;
@@ -40,9 +33,10 @@
 .sidebar-inner {
   @include sidebar-widths;
   display: flex;
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   flex-direction: column;
   height: 100%;
+  overflow: hidden;
 
   .sidebar-enter & {
     opacity: 0;
@@ -88,7 +82,7 @@
 
 .title {
   @extend %heading1;
-  margin: 6px 0 ($gutter / 2);
+  margin: 0 0 ($gutter / 2);
   color: $cadet;
 }
 

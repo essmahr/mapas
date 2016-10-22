@@ -4,7 +4,10 @@
   display: flex;
 
   @media (max-width: $screen-medium - 1) {
+    @include sidebar-widths;
     flex: 0 0 auto;
+    justify-content: space-between;
+    margin: 0 0 (-1 * $border-width);
   }
 
   @media (min-width: $screen-medium) {
@@ -39,41 +42,39 @@
 
 .button {
   @extend %reset-button;
-  flex: 0 0 auto;
+  height: 26px;
   padding: 6px;
   font-size: 18px;
-  border-radius: 2px;
+  border: $border-width solid $grey-light;
 
   svg {
+    display: block;
     width: 12px;
     height: 12px;
-    vertical-align: bottom;
+    margin: auto;
   }
 
   @media (max-width: $screen-medium - 1) {
+    position: relative;
     flex: 1 0 auto;
-    margin-left: $border-width;
-    background: $grey-light;
+    background: $white;
+    margin: 0 (-1 * $border-width);
 
     polyline,
     line {
-      stroke: $white;
+      stroke: $cadet;
     }
 
-    // &:hover {
-    //   background: $white;
-
-    //   polyline,
-    //   line {
-    //     stroke: $ocean;
-    //   }
-    // }
+    &:hover {
+      background: $grey-light;
+    }
   }
 
   @media (min-width: $screen-medium) {
+    flex: 0 0 auto;
     margin-left: $gutter / 2;
     background: transparent;
-    border: $border-width solid $grey-light;
+    border-radius: 2px;
 
     svg {
       width: 10px;

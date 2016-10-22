@@ -26,7 +26,6 @@ class SidebarChild extends React.Component {
 
     return (
       <section styleName='sidebar'>
-        <ListNav onNavClick={this.props.onNavClick}/>
         <div styleName="sidebar-inner">
           <header styleName='heading'>
             <h1 styleName='title'>{place.title}</h1>
@@ -40,6 +39,7 @@ class SidebarChild extends React.Component {
             </div>
           </div>
         </div>
+        <ListNav onNavClick={this.props.onNavClick}/>
       </section>
     );
   }

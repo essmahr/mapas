@@ -6,6 +6,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var isProduction = process.env.NODE_ENV === 'production';
 
+console.log(process.env.NODE_ENV);
+
 var cssHash = isProduction
   ? '[hash:base64:5]'
   : '[name]_[local]_[hash:base64:5]';

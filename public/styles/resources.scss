@@ -5,7 +5,7 @@ $white: #FFFFFF;
 $cadet: #6195a0;
 $black: #040403;
 $orange: #E6AF2E;
-$grey-light: #F5F5F2;
+$grey-light: mix($black, #F5F5F2, 2%);;
 $grey: mix($black, $grey-light, 5%);
 $grey-dark: #373F51;
 
@@ -31,11 +31,15 @@ $ease: cubic-bezier(0.645, 0.045, 0.355, 1.000);
 
 %heading1 {
   font-family: $heading-font;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.025em;
   -webkit-font-smoothing: antialiased;
+
+  @media screen and (min-width: $screen-small) {
+    font-size: 40px;
+  }
 }
 
 %heading2 {
@@ -50,4 +54,16 @@ $ease: cubic-bezier(0.645, 0.045, 0.355, 1.000);
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+@mixin sidebar-widths {
+  width: calc(100vw - #{$gutter * 2} - #{$border-width * 2});
+
+  @media screen and (min-width: $screen-small) {
+    width: calc(50vw - #{$gutter / 2});
+  }
+
+  @media screen and (min-width: $screen-medium) {
+    width: calc(38.2vw - #{$gutter / 2});
+  }
 }

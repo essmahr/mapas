@@ -11,7 +11,7 @@
 .inner {
   position: absolute;
   top: -1 * $border-width;
-  right: 0;
+  right: -1 * $border-width;
   bottom: -1 * $border-width;
   left: -1 * $border-width;
 }
