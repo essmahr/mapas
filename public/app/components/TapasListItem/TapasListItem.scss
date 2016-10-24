@@ -13,39 +13,55 @@
 }
 
 .image {
-  display: block;
   position: relative;
+  display: block;
   margin-bottom: $gutter / 2;
 }
 
 .rating-container {
-  padding: ($gutter / 4) ($gutter / 2);
   position: absolute;
-  bottom: $gutter / 2;
   right: $gutter / 2;
-  background: white;
+  bottom: $gutter / 2;
+  display: flex;
+  padding: 5px ($gutter / 2);
   color: $cadet;
+  background: $white;
 }
 
-.rating {
-  font-weight: 600;
-  color: $orange;
+.star {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  vertical-align: bottom;
+  fill: $grey;
+
+  path {
+    transform: translate3d(0,0,0);
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
-.slash {
-  display: inline-block;
-  margin: 0 0.25em;
-  color: $grey;
+.star-full {
+  composes: star;
+  fill: $orange;
 }
 
-.outof {
-  color: $grey;
+.star-empty {
+  composes: star;
+}
+
+.full-half {
+  fill: $orange;
 }
 
 .title {
   @extend %heading2;
-  color: $grey-dark;
   margin: 0.25em 0;
+  color: $grey-dark;
 }
 
 .date {
