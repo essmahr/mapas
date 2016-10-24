@@ -8,7 +8,7 @@ function onNextPin(props) {
 }
 
 function onPrevPin(props) {
-  const {currentPin, pins, setCurrentPin} = this.props;
+  const {currentPin, pins, setCurrentPin} = props;
   const newIndex = currentPin === 0
     ? pins.length - 1
     : currentPin - 1;
