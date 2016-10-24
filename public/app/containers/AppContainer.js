@@ -2,31 +2,33 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { loadPins, setCurrentPin, } from '../actions';
 
+import navHelpers from '../lib/navHelpers';
+
+import ListNavContainer from './ListNavContainer';
 import TapasMap from '../components/TapasMap/TapasMap';
 import Header from '../components/Header/Header';
 import AppWindow from '../components/AppWindow/AppWindow';
-import SidebarContainer from '../containers/SidebarContainer';
+import SidebarParent from '../components/Sidebar/SidebarParent';
 
 import styles from '../../styles/base.scss';
 
 class App extends React.Component {
-  static propTypes = {};
-
   constructor(props) {
     super(props);
+
+    this.handleKeyDown = navHelpers.handleKeyDown.bind(this)
   }
 
   componentWillMount() {
     this.props.loadPins();
   }
 
-  setCurrentTapa(id) {
-    this.props.setCurrentTapa(id);
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
   }
 
-  firstChild(props) {
-    var childrenArray = React.Children.toArray(props.children);
-    return childrenArray[0] || null;
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
   }
 
   render() {
@@ -39,10 +41,11 @@ class App extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Header />
-        <AppWindow>
+        <AppWindow sliderActive={place}>
           <TapasMap pins={pins} activePin={currentPin} zoomed={mapZoomed} />
-          <SidebarContainer place={place} />
+          <SidebarParent place={place} />
         </AppWindow>
+        <ListNavContainer />
       </div>
     );
   }
@@ -58,5 +61,8 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { loadPins, setCurrentPin },
+  {
+    loadPins,
+    setCurrentPin,
+  }
 )(App);
