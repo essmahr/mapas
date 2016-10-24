@@ -2,24 +2,16 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './AppWindow.scss';
 
-class AppContainer extends React.Component {
-  static propTypes = {
-    name: React.PropTypes.string,
-  };
+const AppContainer = function(props) {
+  const styleName = props.sliderActive ? 'outer-active' : 'outer';
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div styleName='outer'>
-        <div styleName='inner'>
-          {this.props.children}
-        </div>
+  return (
+    <div styleName={styleName}>
+      <div styleName='inner'>
+        {props.children}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default CSSModules(AppContainer, styles);

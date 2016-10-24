@@ -1,17 +1,36 @@
 @import "../../../styles/resources";
 
 .outer {
-  overflow: hidden;
-  height: 100%;
+  position: relative;
+  z-index: 1;
   display: flex;
-  margin: 0 $gutter $gutter;
+  height: 100%;
+  overflow: hidden;
+
+  @media (max-width: $screen-small - 1) {
+    margin: 0 ($gutter / 2) ($gutter / 2);
+    transition: margin-bottom 0.3s ease;
+  }
+
+  @media (min-width: $screen-small) {
+    margin: 0 $gutter $gutter;
+  }
+}
+
+.outer-active {
+  composes: outer;
+
+  @media (max-width: $screen-small - 1) {
+    margin-bottom: $gutter * 2.5;
+    transition-delay: 0.45s;
+  }
 }
 
 .inner {
-  display: flex;
   position: relative;
+  display: flex;
   flex: 1 1 auto;
   height: 100%;
-  background: white;
+  background: $white;
   border: $border-width solid $grey-light;
 }

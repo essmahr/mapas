@@ -1,37 +1,54 @@
 @import "../../../styles/resources";
 
 .nav {
+  position: fixed;
   display: flex;
 
-  @media (max-width: $screen-medium - 1) {
-    @include sidebar-widths;
-    flex: 0 0 auto;
-    justify-content: space-between;
-    margin: 0 0 (-1 * $border-width);
+  @media (max-width: $screen-small - 1) {
+    right: ($gutter / 2) + $border-width;
+    bottom: ($gutter / 2);
+    left: ($gutter / 2) + $border-width;
+
+    &:global(.nav-enter) {
+      transform: translateY($gutter * 2);
+    }
+
+    &:global(.nav-enter-active) {
+      transform: translateY(0);
+      transition: all 0.3s ease 0.5s;
+    }
+
+    &:global(.nav-leave) {
+      transform: translateY(0);
+    }
+
+    &:global(.nav-leave-active) {
+      transform: translateY($gutter * 2);
+      transition: all 0.2s ease;
+    }
   }
 
-  @media (min-width: $screen-medium) {
-    position: fixed;
+  @media (min-width: $screen-small) {
     top: $gutter;
     right: $gutter;
 
-    :global(.sidebar-enter) & {
+    &:global(.nav-enter) {
       opacity: 0;
       transform: translateX(50%);
     }
 
-    :global(.sidebar-enter-active) & {
+    &:global(.nav-enter-active) {
       opacity: 1;
       transform: translateX(0);
       transition: all 0.3s ease-out 0.1s;
     }
 
-    :global(.sidebar-leave) & {
+    &:global(.nav-leave) {
       opacity: 1;
       transform: translateX(0);
     }
 
-    :global(.sidebar-leave-active) & {
+    &:global(.nav-leave-active) {
       opacity: 0;
       transform: translateX(50%);
       transition: all 0.3s ease-in;
@@ -42,10 +59,9 @@
 
 .button {
   @extend %reset-button;
-  height: 26px;
+  order: 2;
   padding: 6px;
   font-size: 18px;
-  border: $border-width solid $grey-light;
 
   svg {
     display: block;
@@ -54,11 +70,12 @@
     margin: auto;
   }
 
-  @media (max-width: $screen-medium - 1) {
+  @media (max-width: $screen-small - 1) {
     position: relative;
     flex: 1 0 auto;
-    background: $white;
+    height: $gutter * 1.5;
     margin: 0 (-1 * $border-width);
+    background: $white;
 
     polyline,
     line {
@@ -70,10 +87,12 @@
     }
   }
 
-  @media (min-width: $screen-medium) {
+  @media (min-width: $screen-small) {
     flex: 0 0 auto;
+    height: 26px;
     margin-left: $gutter / 2;
     background: transparent;
+    border: $border-width solid $grey-light;
     border-radius: 2px;
 
     svg {
@@ -108,4 +127,8 @@
 
 .close {
   composes: button;
+
+  @media (max-width: $screen-small - 1) {
+    order: 1;
+  }
 }

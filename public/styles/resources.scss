@@ -57,7 +57,7 @@ $ease: cubic-bezier(0.645, 0.045, 0.355, 1.000);
 }
 
 @mixin sidebar-widths {
-  width: calc(100vw - #{$gutter * 2} - #{$border-width * 2});
+  width: calc(100vw - #{$gutter} - #{$border-width * 2});
 
   @media screen and (min-width: $screen-small) {
     width: calc(50vw - #{$gutter / 2});
