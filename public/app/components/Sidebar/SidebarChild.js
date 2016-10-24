@@ -6,60 +6,51 @@ import TapasListItem from '../TapasListItem/TapasListItem';
 import styles from './Sidebar.scss';
 import { mapTransitionClasses } from '../../lib/helpers';
 
-class SidebarChild extends React.Component {
+const SidebarChild = function(props) {
+  const place = props.place;
+  const transitionClasses = mapTransitionClasses('slider');
 
-  list() {
-    return this.props.place.tapas.map((tapa, idx) => {
+  const list = () => {
+    return props.place.tapas.map((tapa, idx) => {
       return <TapasListItem key={idx} tapa={tapa} />
     });
   }
 
-  firstChild(props) {
-    var childrenArray = React.Children.toArray(props.children);
-    return childrenArray[0] || null;
-  }
-
-  visitCount() {
-    return this.props.place.tapas
+  const getVisitCount = () => {
+    return props.place.tapas
       .map(tapa => tapa.date)
       .filter((item, pos, self) => self.indexOf(item) === pos)
       .length;
   }
 
-  render() {
-    const place = this.props.place;
-    const visitCount = this.visitCount();
-    const transitionClasses = mapTransitionClasses('slider');
-
-    return (
-      <section styleName='sidebar'>
-        <div styleName="sidebar-inner">
-          <CSSTransitionGroup
-            transitionName={transitionClasses}
-            transitionEnterTimeout={650}
-            transitionLeaveTimeout={650}
-            styleName='slider-outer'
-            component='div'>
-            <div styleName='slider-inner' key={place.title}>
-              <header styleName='heading'>
-                <h1 styleName='title'>{place.title}</h1>
-                <h2 styleName='detail'>Visited <VisitCount count={visitCount}/></h2>
-                <span styleName='separator'>/</span>
-                <h2 styleName='detail'>
-                  <strong>{place.tapas.length}</strong> tapa{place.tapas.length > 1 ? 's' : ''} total
-                </h2>
-              </header>
-              <div styleName='list' key={place.title}>
-                <div styleName='scroll-container'>
-                  {this.list()}
-                </div>
+  return (
+    <section styleName='sidebar'>
+      <div styleName="sidebar-inner">
+        <CSSTransitionGroup
+          transitionName={transitionClasses}
+          transitionEnterTimeout={650}
+          transitionLeaveTimeout={650}
+          styleName='slider-outer'
+          component='div'>
+          <div styleName='slider-inner' key={place.title}>
+            <header styleName='heading'>
+              <h1 styleName='title'>{place.title}</h1>
+              <h2 styleName='detail'>Visited <VisitCount count={getVisitCount()}/></h2>
+              <span styleName='separator'>/</span>
+              <h2 styleName='detail'>
+                <strong>{place.tapas.length}</strong> tapa{place.tapas.length > 1 ? 's' : ''} total
+              </h2>
+            </header>
+            <div styleName='list' key={place.title}>
+              <div styleName='scroll-container'>
+                {list()}
               </div>
             </div>
-          </CSSTransitionGroup>
-        </div>
-      </section>
-    );
-  }
+          </div>
+        </CSSTransitionGroup>
+      </div>
+    </section>
+  );
 }
 
 function VisitCount(props) {

@@ -7,28 +7,24 @@ import SidebarChild from './SidebarChild';
 
 import styles from './Sidebar.scss';
 
-class SidebarParent extends React.Component {
+function firstChild(props) {
+  var childrenArray = React.Children.toArray(props.children);
+  return childrenArray[0] || null;
+}
 
-  firstChild(props) {
-    var childrenArray = React.Children.toArray(props.children);
-    return childrenArray[0] || null;
-  }
+const SidebarParent = function(props) {
+  const {styles, place} = props;
+  const transitionClasses = mapTransitionClasses('sidebar');
 
-  render() {
-    const {styles, place} = this.props;
-
-    const transitionClasses = mapTransitionClasses('sidebar');
-
-    return (
-        <CSSTransitionGroup
-          transitionName={transitionClasses}
-          transitionEnterTimeout={1000}
-          transitionLeaveTimeout={1000}
-          component={this.firstChild}>
-            {place ? <SidebarChild {...this.props} /> : null}
-          </CSSTransitionGroup>
-    );
-  }
+  return (
+    <CSSTransitionGroup
+      transitionName={transitionClasses}
+      transitionEnterTimeout={1000}
+      transitionLeaveTimeout={1000}
+      component={firstChild}>
+        {place ? <SidebarChild {...props} /> : null}
+      </CSSTransitionGroup>
+  );
 }
 
 export default CSSModules(SidebarParent, styles);

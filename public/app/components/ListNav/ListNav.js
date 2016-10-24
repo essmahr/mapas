@@ -8,7 +8,7 @@ const ListNav = function(props) {
   const strokeWidth = 6;
   const transitionClasses = mapTransitionClasses('nav');
 
-  const navEl = function() {
+  const navEl = () => {
     return (
       <nav styleName='nav'>
         <button styleName='prev' onClick={() => props.onNavClick('prev')}>
