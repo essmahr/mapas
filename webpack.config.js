@@ -3,14 +3,9 @@ var path = require('path');
 var merge = require('webpack-merge');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var isProduction = process.env.NODE_ENV === 'production';
-
-console.log(process.env.NODE_ENV);
-
-var cssHash = isProduction
-  ? '[hash:base64:5]'
-  : '[name]_[local]_[hash:base64:5]';
 
 var common = {
   entry: [
@@ -24,14 +19,7 @@ var common = {
   module: {
     loaders: [
       {
-        test: /\.scss$/,
-        loaders: [
-          'style?sourceMap',
-          'css?modules&importLoaders=1&localIdentName=' + cssHash,
-          'sass?sourceMap'
-        ]
-      },
-      { test: /\.js$/,
+        test: /\.js$/,
         include: path.resolve(__dirname, 'public/app'),
         exclude: /node_modules/,
         loader: 'babel-loader'
@@ -44,12 +32,13 @@ var common = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.ejs',
-      inject: 'body'
+      inject: 'body',
+      hash: true,
     }),
     new webpack.ProvidePlugin({
       Promise: 'imports?this=>global!exports?global.Promise!es6-promise',
       fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-    })
+    }),
   ]
 }
 
@@ -67,6 +56,18 @@ var dev = {
     'webpack/hot/dev-server',
     'webpack-dev-server/client?http://localhost:8080',
   ],
+  module: {
+    loaders: [
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style?sourceMap',
+          'css?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]',
+          'sass?sourceMap'
+        ]
+      },
+    ]
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new OpenBrowserPlugin({ url: 'http://localhost:8080' }),
@@ -74,12 +75,23 @@ var dev = {
 }
 
 var production = {
+  module: {
+    loaders: [
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[hash:base64:5]!sass?sourceMap'),
+      },
+    ]
+  },
   plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
+    }),
+    new ExtractTextPlugin('app.css', {
+      allChunks: true
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
