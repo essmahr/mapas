@@ -10,7 +10,7 @@ import PinContainer from '../../containers/PinContainer';
 
 class TapasMap extends React.Component {
   defaultCenter = [37.1772127, -3.5921333];
-  defaultZoom = 13;
+  defaultZoom = 15;
 
   static propTypes = {
     pins: React.PropTypes.array,
@@ -46,20 +46,14 @@ class TapasMap extends React.Component {
 
     const zoomChange = this.props.zoomed !== nextProps.zoomed;
     const zoomInStart = !zoomChange && this.props.activePin === null && nextProps.activePin !== null;
-    const zoomInEnd = zoomChange && this.props.activePin !== null;
-    const zoomOutStart = !zoomChange && this.props.activePin !== null && nextProps.activePin === null;
     const zoomOutEnd = zoomChange && this.props.activePin === null;
-
-    const zoom = zoomInStart
-      ? this.defaultZoom
-      : this.defaultZoom + 2
 
     const center = (zoomOutEnd || zoomInStart)
       ? this.defaultCenter
       : getPinCoords(nextProps.pins[nextProps.activePin])
         || getPinCoords(this.props.pins[this.props.activePin]);
 
-    this.setState({zoom, center});
+    this.setState({center});
   }
 
   render() {
@@ -84,9 +78,9 @@ class TapasMap extends React.Component {
             bootstrapURLKeys={{key: MAPS_API_KEY}}
             options={createOptions}
             defaultCenter={this.defaultCenter}
+            defaultZoom={this.defaultZoom}
             center={this.state.center}
-            resetBoundsOnResize={true}
-            zoom={this.state.zoom}>
+            resetBoundsOnResize={true}>
             {this.pins()}
           </GoogleMap>
         </div>
