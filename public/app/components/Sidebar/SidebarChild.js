@@ -6,41 +6,60 @@ import TapasList from './TapasList';
 import styles from './Sidebar.scss';
 import { mapTransitionClasses } from '../../lib/helpers';
 
-const SidebarChild = function(props) {
-  const place = props.place;
-  const transitionClasses = mapTransitionClasses('slider');
+class SidebarChild extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const getVisitCount = () => {
-    return props.place.tapas
+    this.state = {
+      direction: 'forward'
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const nextPin = nextProps.currentPin;
+    const direction = nextPin > this.props.currentPin || nextPin === 0
+      ? 'forward'
+      : 'backward';
+
+    this.setState({ direction });
+  }
+
+  getVisitCount() {
+    return this.props.place.tapas
       .map(tapa => tapa.date)
       .filter((item, pos, self) => self.indexOf(item) === pos)
       .length;
   }
 
-  return (
-    <section styleName='sidebar'>
-      <div styleName="sidebar-inner">
-        <CSSTransitionGroup
-          transitionName={transitionClasses}
-          transitionEnterTimeout={650}
-          transitionLeaveTimeout={650}
-          styleName='slider-outer'
-          component='div'>
-          <div styleName='slider-inner' key={place.title}>
-            <header styleName='heading'>
-              <h1 styleName='title'>{place.title}</h1>
-              <h2 styleName='detail'>Visited <VisitCount count={getVisitCount()}/></h2>
-              <span styleName='separator'>/</span>
-              <h2 styleName='detail'>
-                <strong>{place.tapas.length}</strong> tapa{place.tapas.length > 1 ? 's' : ''} total
-              </h2>
-            </header>
-            <TapasList tapas={place.tapas} styles={props.styles}/>
-          </div>
-        </CSSTransitionGroup>
-      </div>
-    </section>
-  );
+  render() {
+    const place = this.props.place;
+    const transitionClasses = mapTransitionClasses(`slider-${this.state.direction}`);
+
+    return (
+      <section styleName='sidebar'>
+        <div styleName="sidebar-inner">
+          <CSSTransitionGroup
+            transitionName={transitionClasses}
+            transitionEnterTimeout={650}
+            transitionLeaveTimeout={650}
+            styleName='slider-outer'
+            component='div'>
+            <div styleName='slider-inner' key={place.title}>
+              <header styleName='heading'>
+                <h1 styleName='title'>{place.title}</h1>
+                <h2 styleName='detail'>Visited <VisitCount count={this.getVisitCount()}/></h2>
+                <span styleName='separator'>/</span>
+                <h2 styleName='detail'>
+                  <strong>{place.tapas.length}</strong> tapa{place.tapas.length > 1 ? 's' : ''} total
+                </h2>
+              </header>
+              <TapasList tapas={place.tapas} styles={this.props.styles}/>
+            </div>
+          </CSSTransitionGroup>
+        </div>
+      </section>
+    );
+  }
 }
 
 function VisitCount(props) {

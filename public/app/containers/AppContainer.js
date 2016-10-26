@@ -41,9 +41,9 @@ class App extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Header />
-        <AppWindow sliderActive={place}>
+        <AppWindow sliderActive={currentPin !== null}>
           <TapasMap pins={pins} activePin={currentPin} zoomed={mapZoomed} />
-          <SidebarParent place={place} />
+          <SidebarParent place={place} currentPin={currentPin} />
         </AppWindow>
         <ListNavContainer />
       </div>
