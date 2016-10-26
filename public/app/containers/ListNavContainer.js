@@ -20,7 +20,11 @@ const ListNavContainer = function(props) {
     }
   }
 
-  return (<ListNav onNavClick={handleNavClick} visible={props.currentPin !== null} />);
+  return (
+    <ListNav
+      onNavClick={handleNavClick}
+      visible={props.currentPin !== null} />
+    );
 };
 
 function mapStateToProps(state) {

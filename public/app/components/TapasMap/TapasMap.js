@@ -12,10 +12,6 @@ class TapasMap extends React.Component {
   defaultCenter = [37.1772127, -3.5921333];
   defaultZoom = 15;
 
-  static propTypes = {
-    pins: React.PropTypes.array,
-  };
-
   constructor(props) {
     super(props);
 

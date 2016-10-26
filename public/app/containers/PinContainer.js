@@ -7,7 +7,7 @@ import TapasPin from '../components/TapasPin/TapasPin';
 
 const Pin = function(props) {
   const onClick = function() {
-    props.setCurrentPin(props.id);
+    props.dispatch(setCurrentPin(props.id));
   }
 
   return (
@@ -15,21 +15,4 @@ const Pin = function(props) {
   );
 }
 
-function mapStateToProps(state) {
-  return {};
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    setCurrentPin: (id) => {
-      dispatch(setCurrentPin(id));
-    }
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Pin)
-
-
+export default connect()(Pin);

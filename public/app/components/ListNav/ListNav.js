@@ -34,8 +34,8 @@ const ListNav = function(props) {
   return (
     <CSSTransitionGroup
       transitionName={transitionClasses}
-      transitionEnterTimeout={1000}
-      transitionLeaveTimeout={1000}>
+      transitionEnterTimeout={400}
+      transitionLeaveTimeout={400}>
       {props.visible ? navEl() : null}
     </CSSTransitionGroup>
   );
