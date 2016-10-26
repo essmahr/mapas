@@ -2,19 +2,13 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ListNavContainer from '../../containers/ListNavContainer';
-import TapasListItem from '../TapasListItem/TapasListItem';
+import TapasList from './TapasList';
 import styles from './Sidebar.scss';
 import { mapTransitionClasses } from '../../lib/helpers';
 
 const SidebarChild = function(props) {
   const place = props.place;
   const transitionClasses = mapTransitionClasses('slider');
-
-  const list = () => {
-    return props.place.tapas.map((tapa, idx) => {
-      return <TapasListItem key={idx} tapa={tapa} />
-    });
-  }
 
   const getVisitCount = () => {
     return props.place.tapas
@@ -41,11 +35,7 @@ const SidebarChild = function(props) {
                 <strong>{place.tapas.length}</strong> tapa{place.tapas.length > 1 ? 's' : ''} total
               </h2>
             </header>
-            <div styleName='list' key={place.title}>
-              <div styleName='scroll-container'>
-                {list()}
-              </div>
-            </div>
+            <TapasList tapas={place.tapas} styles={props.styles}/>
           </div>
         </CSSTransitionGroup>
       </div>
