@@ -23,9 +23,10 @@
   right: $gutter / 2;
   bottom: $gutter / 2;
   display: flex;
-  padding: 5px ($gutter / 2);
+  padding: 5px ($gutter / 2) 6px;
   color: $cadet;
   background: $white;
+  border-radius: 14px;
 }
 
 .star {

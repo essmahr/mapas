@@ -34,3 +34,59 @@
 .empty {
   opacity: 0;
 }
+
+.spinner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+  transition: opacity 0.2s ease;
+}
+
+.spinner-loaded {
+  composes: spinner;
+  opacity: 0;
+}
+
+.spinner-svg {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: $grey;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  transform-origin: center 70%;
+}
+
+.spoon {
+  composes: spinner-svg;
+  animation-name: swing-two;
+}
+
+.fork {
+  composes: spinner-svg;
+  animation-name: swing-one;
+}
+
+@keyframes swing-one {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-90deg);
+  }
+}
+
+@keyframes swing-two {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
