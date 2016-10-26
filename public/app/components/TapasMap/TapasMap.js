@@ -63,6 +63,10 @@ class TapasMap extends React.Component {
   }
 
   render() {
+    const innerClass = this.props.activePin !== null
+      ? 'inner-active'
+      : 'inner';
+
     function createOptions(map) {
       return {
         styles: mapStyles,
@@ -75,7 +79,7 @@ class TapasMap extends React.Component {
 
     return (
       <div styleName='map'>
-        <div styleName='inner'>
+        <div styleName={innerClass}>
           <GoogleMap
             bootstrapURLKeys={{key: MAPS_API_KEY}}
             options={createOptions}

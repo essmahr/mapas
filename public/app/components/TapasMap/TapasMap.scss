@@ -13,3 +13,12 @@
   bottom: -1 * $border-width;
   left: -1 * $border-width;
 }
+
+.inner-active {
+  composes: inner;
+  right: 0;
+
+  @media (max-width: $screen-small) {
+    left: 0;
+  }
+}
