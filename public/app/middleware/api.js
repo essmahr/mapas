@@ -1,4 +1,5 @@
 import { DB_JSON_URL } from '../constants/paths';
+import processTapas from '../lib/processTapas';
 
 function callApi() {
   return fetch(DB_JSON_URL)
@@ -9,7 +10,7 @@ function callApi() {
         return Promise.reject(response);
       }
 
-      return json;
+      return processTapas(json);
     });
 }
 
