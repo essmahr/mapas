@@ -32,7 +32,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {currentPin, pins, mapZoomed} = this.props;
+    const {pins, pinsLoaded, currentPin, mapZoomed} = this.props;
 
     const place = currentPin !== null
       ? pins[currentPin]
@@ -41,7 +41,7 @@ class App extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Header />
-        <AppWindow sliderActive={currentPin !== null}>
+        <AppWindow sliderActive={currentPin !== null} pinsLoaded={pinsLoaded}>
           <TapasMap pins={pins} activePin={currentPin} zoomed={mapZoomed} />
           <SidebarParent place={place} currentPin={currentPin} />
         </AppWindow>
@@ -54,6 +54,7 @@ class App extends React.Component {
 function mapStateToProps(state) {
   return {
     pins: state.pins,
+    pinsLoaded: state.pinsLoaded,
     currentPin: state.currentPin,
     mapZoomed: state.mapZoomed,
   };
