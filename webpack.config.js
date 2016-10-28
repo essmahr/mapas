@@ -5,6 +5,8 @@ var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var config = require('./public/app/config/env.js');
+
 var isProduction = process.env.NODE_ENV === 'production';
 
 var common = {
@@ -31,6 +33,8 @@ var common = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      isProduction: isProduction,
+      analyticsKey: config.ANALYTICS_KEY,
       template: 'index.ejs',
       inject: 'body',
       hash: true,
