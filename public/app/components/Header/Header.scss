@@ -4,8 +4,13 @@
   display: flex;
   align-items: center;
   flex: 0 0 auto;
-  padding: $gutter;
-  color: $black;
+  padding: 14px $gutter;
+  color: mix($white, $grey-dark, 20%);
+
+  @media screen and (min-width: $screen-small) {
+    padding-top: $gutter;
+    padding-bottom: $gutter;
+  }
 }
 
 .heading {
@@ -30,6 +35,7 @@
   top: -1px;
   margin-right: 10px;
   vertical-align: middle;
+  fill: currentColor;
 
   @media (max-width: $screen-medium - 1) {
     width: 22px;

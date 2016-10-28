@@ -92,8 +92,13 @@
 
 .heading {
   flex: 0 0 auto;
-  padding: 18px $gutter 16px;
+  padding: 14px $gutter 12px;
   border-bottom: $border-width solid $white;
+
+  @media screen and (min-width: $screen-small) {
+    padding-top: 18px;
+    padding-bottom: 16px;
+  }
 }
 
 .list-container {
@@ -126,8 +131,11 @@
 
 .title {
   @extend %heading1;
-  margin: 0 0 ($gutter / 2);
   color: $cadet;
+
+  @media screen and (min-width: $screen-small) {
+    margin: 0 0 ($gutter / 2);
+  }
 }
 
 .detail {
