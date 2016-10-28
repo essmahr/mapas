@@ -1,20 +1,18 @@
 {
-  "name": "",
-  "version": "0.0.0",
-  "description": "",
-  "main": "app/main.jsx",
+  "name": "mapas",
+  "version": "0.0.1",
+  "description": "A running total of all the tapas we consume while living in Spain",
   "scripts": {
     "build": "NODE_ENV=production webpack",
-    "start": "NODE_ENV=development webpack-dev-server --devtool eval --progress --hot"
+    "start": "NODE_ENV=development webpack-dev-server --devtool eval --progress --hot",
+    "analyze": "NODE_ENV=production webpack --json | webpack-bundle-size-analyzer"
   },
   "dependencies": {
-    "babel-runtime": "6.x",
     "classnames": "^2.1.5",
     "dateformat": "^1.0.12",
     "es6-promise": "^3.2.1",
     "google-map-react": "^0.19.0",
     "normalize.css": "^4.2.0",
-    "open-browser-webpack-plugin": "0.0.2",
     "react": "15.x",
     "react-addons-css-transition-group": "^15.3.2",
     "react-css-modules": "^3.7.10",
@@ -41,6 +39,7 @@
     "html-webpack-plugin": "^2.24.0",
     "imports-loader": "^0.6.5",
     "json-loader": "^0.5.4",
+    "open-browser-webpack-plugin": "0.0.2",
     "node-sass": "^3.10.0",
     "redux-logger": "^2.7.0",
     "sass-loader": "^4.0.2",

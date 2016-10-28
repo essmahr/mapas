@@ -4,7 +4,6 @@ var merge = require('webpack-merge');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 var config = require('./public/app/config/env.js');
 
 var isProduction = process.env.NODE_ENV === 'production';
