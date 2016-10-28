@@ -46,9 +46,20 @@ class App extends React.Component {
           <SidebarParent place={place} currentPin={currentPin} />
         </AppWindow>
         <ListNavContainer />
+        <Footer />
       </div>
     );
   }
+}
+
+function Footer() {
+  return (
+    <div className={styles.footer}>
+      a <a href="http://smahr.net">smahr.net</a> project
+      <span className={styles.sep}>|</span>
+      <a href="https://github.com/essmahr/mapas">github</a>
+    </div>
+  );
 }
 
 function mapStateToProps(state) {

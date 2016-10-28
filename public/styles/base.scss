@@ -51,5 +51,29 @@ img {
   background: $white;
 }
 
+.footer {
+  position: fixed;
+  right: $gutter;
+  bottom: 7px;
+  font-size: 11px;
+  color: $grey;
 
+  @media (max-width: $screen-small - 1) {
+    display: none;
+  }
+
+  a {
+    color: mix($black, $grey, 10%);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.sep {
+  display: inline-block;
+  margin: 0 10px;
+}
 

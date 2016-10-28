@@ -17,7 +17,7 @@ const AppContainer = function(props) {
           transitionEnter={false}
           transitionEnterTimeout={600}
           transitionLeaveTimeout={600}>
-          {!props.pinsLoaded ? <div styleName="loader"></div> : null}
+          {!props.pinsLoaded ? <div styleName="loader">Loading Map</div> : null}
           </CSSTransitionGroup>
       </div>
     </div>

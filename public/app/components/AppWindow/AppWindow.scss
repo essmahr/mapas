@@ -14,7 +14,7 @@
   }
 
   @media (min-width: $screen-small) {
-    margin: 0 $gutter $gutter;
+    margin: 0 $gutter ($gutter * 1.5);
   }
 }
 
@@ -47,6 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: $grey;
   background-color: $white;
   border: $border-width solid $grey-light;
 
