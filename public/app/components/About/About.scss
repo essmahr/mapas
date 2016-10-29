@@ -1,0 +1,68 @@
+@import "../../../styles/resources";
+
+.about {
+  position: absolute;
+  top: -1 * $border-width;
+  right: -1 * $border-width;
+  bottom: -1 * $border-width;
+  left: -1 * $border-width;
+  z-index: 3;
+  display: flex;
+  overflow: auto;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  color: $white;
+  background: $cadet;
+
+  @media (min-width: $screen-small) {
+    align-items: center;
+  }
+
+  &:global(.about-enter) {
+    opacity: 0;
+  }
+
+  &:global(.about-enter-active) {
+    opacity: 1;
+    transition: all 0.2s ease-out;
+  }
+
+  &:global(.about-leave) {
+    opacity: 1;
+  }
+
+  &:global(.about-leave-active) {
+    opacity: 0;
+    transition: all 0.2s ease-in;
+  }
+}
+
+.close {
+  @extend %reset-button;
+  position: absolute;
+  top: $gutter;
+  right: $gutter;
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+  line-height: 0;
+  color: $white;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.about-inner {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.scroll-container {
+  padding: $gutter;
+}
+
+.heading {
+  @extend %heading1;
+}

@@ -37,6 +37,22 @@ class TapasMap extends React.Component {
     });
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.pins.length !== nextProps.pins.length) {
+      return true;
+    }
+
+    if (this.props.zoomed !== nextProps.zoomed) {
+      return true;
+    }
+
+    if (this.props.activePin !== nextProps.activePin) {
+      return true;
+    }
+
+    return false;
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.pins.length === 0) return;
 

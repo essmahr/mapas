@@ -17,7 +17,11 @@ function onPrevPin(props) {
 }
 
 function onClose(props) {
-  props.setCurrentPin(null);
+  if (props.aboutVisible) {
+    props.toggleAboutState();
+  } else {
+    props.setCurrentPin(null);
+  }
 }
 
 function handleKeyDown(evt) {
@@ -37,7 +41,7 @@ function handleKeyDown(evt) {
       onPrevPin(this.props);
       break;
     case 'Escape':
-      onClose();
+      onClose(this.props);
   }
 }
 

@@ -46,3 +46,11 @@ export function setCurrentTapa(id) {
     id,
   }
 }
+
+export const ABOUT_STATE_TOGGLE = 'ABOUT_STATE_TOGGLE';
+
+export function toggleAboutState() {
+  return {
+    type: ABOUT_STATE_TOGGLE,
+  }
+}

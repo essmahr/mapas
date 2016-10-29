@@ -20,10 +20,10 @@ const ListNavContainer = function(props) {
     }
   }
 
+  const showNav = props.currentPin !== null && !props.hidden;
+
   return (
-    <ListNav
-      onNavClick={handleNavClick}
-      visible={props.currentPin !== null} />
+    <ListNav onNavClick={handleNavClick} visible={showNav} />
     );
 };
 

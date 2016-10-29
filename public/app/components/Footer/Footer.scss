@@ -1,0 +1,62 @@
+@import "../../../styles/resources";
+
+.footer {
+  position: fixed;
+  bottom: 7px;
+  display: flex;
+  font-size: 11px;
+  color: $grey;
+
+  @media (max-width: $screen-small - 1) {
+    right: $gutter / 2;
+    left: $gutter / 2;
+    justify-content: center;
+  }
+
+  @media (min-width: $screen-small) {
+    right: $gutter;
+    left: $gutter;
+    justify-content: space-between;
+  }
+
+  a {
+    color: mix($black, $grey, 10%);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.left {
+  display: block;
+  transform: translateY(0);
+  transition: transform 0.2s ease;
+}
+
+.left-hidden {
+  composes: left;
+
+  @media (max-width: $screen-small - 1) {
+    transform: translateY(200%);
+  }
+}
+
+.about-toggle {
+  @extend %reset-button;
+  color: $cadet;
+}
+
+.right {
+  display: block;
+
+  @media (max-width: $screen-small - 1) {
+    display: none;
+  }
+}
+
+.sep {
+  display: inline-block;
+  margin: 0 10px;
+}

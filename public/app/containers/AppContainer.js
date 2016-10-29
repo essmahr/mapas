@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadPins, setCurrentPin, } from '../actions';
+import { loadPins, setCurrentPin, toggleAboutState } from '../actions';
 
 import navHelpers from '../lib/navHelpers';
 
@@ -9,6 +9,8 @@ import TapasMap from '../components/TapasMap/TapasMap';
 import Header from '../components/Header/Header';
 import AppWindow from '../components/AppWindow/AppWindow';
 import SidebarParent from '../components/Sidebar/SidebarParent';
+import Footer from '../components/Footer/Footer';
+import About from '../components/About/About';
 
 import styles from '../../styles/base.scss';
 
@@ -32,7 +34,13 @@ class App extends React.Component {
   }
 
   render() {
-    const {pins, pinsLoaded, currentPin, mapZoomed} = this.props;
+    const {
+      pins,
+      pinsLoaded,
+      currentPin,
+      mapZoomed,
+      aboutVisible
+    } = this.props;
 
     const place = currentPin !== null
       ? pins[currentPin]
@@ -42,24 +50,15 @@ class App extends React.Component {
       <div className={styles.wrapper}>
         <Header />
         <AppWindow sliderActive={currentPin !== null} pinsLoaded={pinsLoaded}>
+          <About visible={aboutVisible} onClose={this.props.toggleAboutState} />
           <TapasMap pins={pins} activePin={currentPin} zoomed={mapZoomed} />
           <SidebarParent place={place} currentPin={currentPin} />
         </AppWindow>
-        <ListNavContainer />
-        <Footer />
+        <ListNavContainer hidden={aboutVisible}/>
+        <Footer aboutVisible={aboutVisible} pinActive={place} onAboutClick={this.props.toggleAboutState} />
       </div>
     );
   }
-}
-
-function Footer() {
-  return (
-    <div className={styles.footer}>
-      a <a href="http://smahr.net">smahr.net</a> project
-      <span className={styles.sep}>|</span>
-      <a href="https://github.com/essmahr/mapas">github</a>
-    </div>
-  );
 }
 
 function mapStateToProps(state) {
@@ -68,6 +67,7 @@ function mapStateToProps(state) {
     pinsLoaded: state.pinsLoaded,
     currentPin: state.currentPin,
     mapZoomed: state.mapZoomed,
+    aboutVisible: state.aboutVisible,
   };
 }
 
@@ -76,5 +76,6 @@ export default connect(
   {
     loadPins,
     setCurrentPin,
+    toggleAboutState,
   }
 )(App);

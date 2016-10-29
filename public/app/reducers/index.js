@@ -10,6 +10,7 @@ const rootReducer = combineReducers({
   currentPin,
   currentTapa,
   mapZoomed,
+  aboutVisible,
 });
 
 function mapZoomed(state = false, action) {
@@ -19,5 +20,14 @@ function mapZoomed(state = false, action) {
 
   return state;
 }
+
+function aboutVisible(state = false, action) {
+  if (action.type === 'ABOUT_STATE_TOGGLE') {
+    return !state;
+  }
+
+  return state;
+}
+
 
 export default rootReducer;
