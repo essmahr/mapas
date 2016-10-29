@@ -15,10 +15,10 @@ const About = function(props) {
           <div styleName='scroll-container'>
             <h2 styleName='heading'>Tapas in Andalucia</h2>
             <p>
-              <strong>Tapas are two- to three-bite traditional snacks served at bars, cafes and
-              restaurants throughout Spain, alongside a beverage.</strong> While tapas are increasingly
-              becoming a section on the menu (and therefore a line item on your bill), the province of
-              Andalucia &mdash; and Granada in particular &mdash; has somehow clung to the more classic
+              <strong>Tapas are two- to three-bite snacks served at bars, cafes and
+              restaurants throughout Spain, alongside a beverage.</strong> While nowadays tapas are just another
+              section on the menu (and therefore a line item on your bill), the province of
+              Andalucia &mdash; and Granada in particular &mdash; has somehow managed to maintain the traditional
               arrangement of tapas being free: with the purchase of any drink, you can expect a complementary
               plate of food. A glass of wine or beer in the city will run you about two Euros (under three
               bucks), so it's a bargain. We're a little baffled by the economics of it all.
