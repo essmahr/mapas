@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var merge = require('webpack-merge');
+var autoprefixer = require('autoprefixer');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -42,7 +43,9 @@ var common = {
       Promise: 'imports?this=>global!exports?global.Promise!es6-promise',
       fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     }),
-  ]
+  ],
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ]
+
 }
 
 var dev = {
@@ -66,6 +69,7 @@ var dev = {
         loaders: [
           'style?sourceMap',
           'css?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]',
+          'postcss-loader',
           'sass?sourceMap'
         ]
       },
@@ -82,7 +86,7 @@ var production = {
     loaders: [
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[hash:base64:5]!sass?sourceMap'),
+        loader: ExtractTextPlugin.extract('style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[hash:base64:5]!postcss-loader!sass?sourceMap'),
       },
     ]
   },
