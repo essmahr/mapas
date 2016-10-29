@@ -2,8 +2,8 @@
 
 .pin {
   position: relative;
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: $orange;
   border: 2px solid darken($orange, 5%);
@@ -16,8 +16,8 @@
 
   &::after {
     position: absolute;
-    top: -18px;
-    left: -18px;
+    top: -15px;
+    left: -15px;
     z-index: -1;
     display: block;
     width: 48px;
@@ -27,6 +27,16 @@
     content: "";
     transform: scale(0);
     transition: all 0.2s $ease;
+  }
+
+  @media (min-width: $screen-small) {
+    width: 16px;
+    height: 16px;
+
+    &::after {
+      top: -18px;
+      left: -18px;
+    }
   }
 }
 
