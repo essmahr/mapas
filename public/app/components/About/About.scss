@@ -60,7 +60,11 @@
 }
 
 .scroll-container {
-  padding: $gutter;
+  padding: ($gutter * 3) $gutter $gutter;
+
+  @media (min-width: $screen-small) {
+    padding-top: $gutter;
+  }
 }
 
 .heading {
