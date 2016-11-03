@@ -15,11 +15,31 @@ class SidebarChild extends React.Component {
     }
   }
 
+  isFirst(pindex) {
+    return pindex === 0;
+  }
+
+  isLast(pindex) {
+    return pindex === this.props.pinsCount - 1;
+  }
+
+  getDirection(currentPin, nextPin) {
+    if (this.isFirst(currentPin) && this.isLast(nextPin)) {
+      return 'backward';
+    }
+
+    if (this.isFirst(nextPin) && this.isLast(currentPin)) {
+      return 'forward';
+    }
+
+    return currentPin < nextPin ? 'forward' : 'backward';
+  }
+
   componentWillReceiveProps(nextProps) {
-    const nextPin = nextProps.currentPin;
-    const direction = nextPin > this.props.currentPin || nextPin === 0
-      ? 'forward'
-      : 'backward';
+    const direction = this.getDirection(
+      this.props.currentPin,
+      nextProps.currentPin
+    );
 
     this.setState({ direction });
   }
@@ -40,8 +60,8 @@ class SidebarChild extends React.Component {
         <div styleName="sidebar-inner">
           <CSSTransitionGroup
             transitionName={transitionClasses}
-            transitionEnterTimeout={650}
-            transitionLeaveTimeout={650}
+            transitionEnterTimeout={400}
+            transitionLeaveTimeout={400}
             styleName='slider-outer'
             component='div'>
             <div styleName='slider-inner' key={place.title}>
