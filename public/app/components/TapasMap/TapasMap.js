@@ -9,7 +9,7 @@ import styles from './TapasMap.scss';
 import PinContainer from '../../containers/PinContainer';
 
 class TapasMap extends React.Component {
-  defaultCenter = [37.1772127, -3.5921333];
+  defaultCenter = [37.177760, -3.597648];
   defaultZoom = 15;
 
   constructor(props) {
