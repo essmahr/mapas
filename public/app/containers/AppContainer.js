@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import debounce from 'just-debounce';
 import { loadPins, setCurrentPin, toggleAboutState } from '../actions';
-
 import navHelpers from '../lib/navHelpers';
 
 import ListNavContainer from './ListNavContainer';
@@ -18,7 +18,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleKeyDown = navHelpers.handleKeyDown.bind(this)
+    this.handleKeyDown = debounce(navHelpers.handleKeyDown.bind(this), 400, true);
   }
 
   componentWillMount() {
