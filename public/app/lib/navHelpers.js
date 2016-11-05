@@ -27,20 +27,20 @@ function onClose(props) {
 function handleKeyDown(evt) {
   if (this.props.currentPin === null) return;
 
-  switch (evt.key) {
-    case 'ArrowRight':
+  switch (evt.keyCode) {
+    case 39: // right
       onNextPin(this.props);
       break;
-    case 'ArrowDown':
+    case 40: // down
       onNextPin(this.props);
       break;
-    case 'ArrowLeft':
+    case 37: // left
       onPrevPin(this.props);
       break;
-    case 'ArrowUp':
+    case 38: // up
       onPrevPin(this.props);
       break;
-    case 'Escape':
+    case 27: // escape
       onClose(this.props);
   }
 }
