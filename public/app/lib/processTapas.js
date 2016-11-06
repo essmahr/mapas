@@ -17,9 +17,9 @@ function sortPins(pins) {
     const date = a.tapas[0].date;
     const compareDate = b.tapas[0].date;
     if (date < compareDate)
-      return 1;
-    if (date > compareDate)
       return -1;
+    if (date > compareDate)
+      return 1;
     return 0;
   });
 }
