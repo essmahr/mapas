@@ -143,10 +143,18 @@
   display: inline-block;
   color: $grey-dark;
 
-  strong {
-    font-weight: 600;
-    color: $black;
+  svg {
+    vertical-align: top;
   }
+
+  strong {
+    font-weight: inherit;
+  }
+}
+
+.location {
+  composes: detail;
+  color: $black;
 }
 
 .separator {

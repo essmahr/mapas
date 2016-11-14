@@ -51,6 +51,14 @@ class SidebarChild extends React.Component {
       .length;
   }
 
+  pinIcon() {
+    return (
+      <svg width='10' height='10' viewBox='0 0 32 32'>
+        <path d='M16 0c-5.523 0-10 4.477-10 10 0 10 10 22 10 22s10-12 10-22c0-5.523-4.477-10-10-10zM16 16c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z'></path>
+      </svg>
+    );
+  }
+
   render() {
     const place = this.props.place;
     const transitionClasses = mapTransitionClasses(`slider-${this.state.direction}`);
@@ -67,7 +75,9 @@ class SidebarChild extends React.Component {
             <div styleName='slider-inner' key={place.title}>
               <header styleName='heading'>
                 <h1 styleName='title'>{place.title}</h1>
-                <h2 styleName='detail'>Visited <VisitCount count={this.getVisitCount()}/></h2>
+                <h2 styleName='location'>{this.pinIcon()} {place.where}</h2>
+                <span styleName='separator'>/</span>
+                <h3 styleName='detail'>Visited <VisitCount count={this.getVisitCount()}/></h3>
                 <span styleName='separator'>/</span>
                 <h2 styleName='detail'>
                   <strong>{place.tapas.length}</strong> tapa{place.tapas.length > 1 ? 's' : ''} total
