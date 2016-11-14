@@ -1,23 +1,21 @@
 import React from 'react';
 import GoogleMap from 'google-map-react';
+import { fitBounds } from 'google-map-react/utils';
 import CSSModules from 'react-css-modules';
 import mapStyles from 'json!../../config/mapStyles.json';
-import { getPinCoords } from '../../lib/helpers';
+import { getPinCoords, getBoundsByLocation } from '../../lib/helpers';
 import { MAPS_API_KEY } from '../../config/env';
 import styles from './TapasMap.scss';
 
 import PinContainer from '../../containers/PinContainer';
 
 class TapasMap extends React.Component {
-  defaultCenter = [37.177760, -3.597648];
-  defaultZoom = 15;
-
   constructor(props) {
     super(props);
 
     this.state = {
-      zoom: this.defaultZoom,
-      center: this.defaultCenter,
+      center: [37.180621, -3.597090],
+      zoom: 15,
     }
   }
 
@@ -38,10 +36,6 @@ class TapasMap extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    if (this.props.pins.length !== nextProps.pins.length) {
-      return true;
-    }
-
     if (this.props.zoomed !== nextProps.zoomed) {
       return true;
     }
@@ -53,19 +47,38 @@ class TapasMap extends React.Component {
     return false;
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.pins.length === 0) return;
+  getInitialBounds() {
+    const bounds = getBoundsByLocation(this.props.pins, 'Granada');
 
-    const zoomChange = this.props.zoomed !== nextProps.zoomed;
-    const zoomInStart = !zoomChange && this.props.activePin === null && nextProps.activePin !== null;
-    const zoomOutEnd = zoomChange && this.props.activePin === null;
+    const mapSize = {
+      width: document.body.clientWidth * 0.9,
+      height: document.body.clientHeight * 0.8,
+    }
+
+    const {center, zoom} = fitBounds(bounds, mapSize);
+
+    this.setState({center, zoom});
+  }
+
+  getUpdatedBounds(oldProps, newProps) {
+    const zoomChange = oldProps.zoomed !== newProps.zoomed;
+    const zoomInStart = !zoomChange && oldProps.activePin === null && newProps.activePin !== null;
+    const zoomOutEnd = zoomChange && oldProps.activePin === null;
 
     const center = (zoomOutEnd || zoomInStart)
-      ? this.defaultCenter
-      : getPinCoords(nextProps.pins[nextProps.activePin])
-        || getPinCoords(this.props.pins[this.props.activePin]);
+      ? this.state.center
+      : getPinCoords(newProps.pins[newProps.activePin])
+        || getPinCoords(oldProps.pins[oldProps.activePin]);
 
     this.setState({center});
+  }
+
+  componentWillMount() {
+    this.getInitialBounds();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.getUpdatedBounds(this.props, nextProps);
   }
 
   render() {
@@ -89,8 +102,7 @@ class TapasMap extends React.Component {
           <GoogleMap
             bootstrapURLKeys={{key: MAPS_API_KEY}}
             options={createOptions}
-            defaultCenter={this.defaultCenter}
-            defaultZoom={this.defaultZoom}
+            zoom={this.state.zoom}
             center={this.state.center}
             resetBoundsOnResize={true}>
             {this.pins()}

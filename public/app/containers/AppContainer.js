@@ -51,7 +51,7 @@ class App extends React.Component {
         <Header />
         <AppWindow sliderActive={currentPin !== null} pinsLoaded={pinsLoaded}>
           <About visible={aboutVisible} onClose={this.props.toggleAboutState} />
-          <TapasMap pins={pins} activePin={currentPin} zoomed={mapZoomed} />
+          { pinsLoaded ? <TapasMap pins={pins} activePin={currentPin} zoomed={mapZoomed} /> : null }
           <SidebarParent place={place} currentPin={currentPin} pinsCount={pins.length} />
         </AppWindow>
         <ListNavContainer hidden={aboutVisible}/>
