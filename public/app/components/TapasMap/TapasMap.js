@@ -21,8 +21,6 @@ class TapasMap extends React.Component {
 
   pins() {
     return this.props.pins.map((pin, idx) => {
-      if (!pin.tapas || pin.tapas.length === 0) return;
-
       const isActive = this.props.activePin === idx;
 
       return <PinContainer

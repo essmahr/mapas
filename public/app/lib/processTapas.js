@@ -1,15 +1,19 @@
 function sortTapas(pins) {
-  return pins.map((pin) => {
-    pin.tapas = pin.tapas.sort((a, b) => {
-      if (a.date < b.date)
-        return 1;
-      if (a.date > b.date)
-        return -1;
-      return 0;
-    });
+  return pins
+    .filter((pin) => {
+      return pin.tapas && pin.tapas.length !== 0;
+    })
+    .map((pin) => {
+      pin.tapas = pin.tapas.sort((a, b) => {
+        if (a.date < b.date)
+          return 1;
+        if (a.date > b.date)
+          return -1;
+        return 0;
+      });
 
-    return pin;
-  });
+      return pin;
+    });
 }
 
 function sortPins(pins) {
