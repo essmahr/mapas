@@ -9,6 +9,3 @@ Built with all the coolest tools!
 - [React CSS Modules](https://github.com/gajus/react-css-modules)
 - [google-map-react](https://github.com/istarkov/google-map-react)
 
-
-[Tapas data](https://dl.dropboxusercontent.com/u/62707196/tapas/tapas.json) is served as JSON, using Dropbox as a CDN.
-

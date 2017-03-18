@@ -2,16 +2,17 @@ import { DB_JSON_URL } from '../constants/paths';
 import processTapas from '../lib/processTapas';
 
 function callApi() {
-  return fetch(DB_JSON_URL)
+  return fetch(DB_JSON_URL, { method: 'get' })
     .then(response =>
       response.json().then((json) => ({ json, response }))
     ).then(({ json, response }) => {
+
       if (!response.ok) {
         return Promise.reject(response);
       }
 
       return processTapas(json);
-    });
+    }).catch(console.error);
 }
 
 // Action key that carries API call info interpreted by this Redux middleware.
