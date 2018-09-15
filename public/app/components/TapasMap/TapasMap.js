@@ -90,6 +90,7 @@ class TapasMap extends React.Component {
       return {
         styles: mapStyles,
         keyboardShortcuts: false,
+        fullscreenControl: false,
         zoomControlOptions: {
           position: map.ControlPosition.LEFT_BOTTOM
         }
