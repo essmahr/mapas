@@ -4,7 +4,6 @@ import { fitBounds } from "google-map-react/utils";
 import CSSModules from "react-css-modules";
 import mapStyles from "../../config/mapStyles.json";
 import { getPinCoords, getBoundsByLocation } from "../../lib/helpers";
-import { MAPS_API_KEY } from "../../config/env";
 import styles from "./TapasMap.scss";
 
 import PinContainer from "../../containers/PinContainer";
@@ -101,7 +100,7 @@ class TapasMap extends React.Component {
       <div styleName="map">
         <div styleName={innerClass}>
           <GoogleMap
-            bootstrapURLKeys={{ key: MAPS_API_KEY }}
+            bootstrapURLKeys={{ key: process.env.MAPS_API_KEY }}
             options={createOptions}
             zoom={this.state.zoom}
             center={this.state.center}

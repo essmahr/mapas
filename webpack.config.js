@@ -1,9 +1,9 @@
+require("dotenv").load();
 const webpack = require("webpack");
 const path = require("path");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const config = require("./public/app/config/env.js");
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -32,10 +32,15 @@ const common = {
   plugins: [
     new HtmlWebpackPlugin({
       isProduction: isProduction,
-      analyticsKey: config.ANALYTICS_KEY,
+      analyticsKey: process.env.ANALYTICS_KEY,
       template: "index.ejs",
       inject: "body",
       hash: true
+    }),
+    new webpack.DefinePlugin({
+      "process.env": {
+        MAPS_API_KEY: JSON.stringify(process.env.MAPS_API_KEY)
+      }
     }),
     new webpack.ProvidePlugin({
       Promise:
@@ -51,7 +56,10 @@ const dev = {
   devServer: {
     compress: true,
     port: 8000,
-    hot: true
+    hot: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    }
   },
   devtool: "cheap-eval-source-map",
   entry: [
@@ -93,11 +101,6 @@ const production = {
     ]
   },
   plugins: [
-    // new webpack.DefinePlugin({
-    //   'process.env': {
-    //     'NODE_ENV': JSON.stringify('production')
-    //   }
-    // }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"
