@@ -1,35 +1,37 @@
-import React from 'react';
-import GoogleMap from 'google-map-react';
-import { fitBounds } from 'google-map-react/utils';
-import CSSModules from 'react-css-modules';
-import mapStyles from 'json!../../config/mapStyles.json';
-import { getPinCoords, getBoundsByLocation } from '../../lib/helpers';
-import { MAPS_API_KEY } from '../../config/env';
-import styles from './TapasMap.scss';
+import React from "react";
+import GoogleMap from "google-map-react";
+import { fitBounds } from "google-map-react/utils";
+import CSSModules from "react-css-modules";
+import mapStyles from "../../config/mapStyles.json";
+import { getPinCoords, getBoundsByLocation } from "../../lib/helpers";
+import { MAPS_API_KEY } from "../../config/env";
+import styles from "./TapasMap.scss";
 
-import PinContainer from '../../containers/PinContainer';
+import PinContainer from "../../containers/PinContainer";
 
 class TapasMap extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      center: [37.180621, -3.597090],
-      zoom: 15,
-    }
+      center: [37.180621, -3.59709],
+      zoom: 15
+    };
   }
 
   pins() {
     return this.props.pins.map((pin, idx) => {
       const isActive = this.props.activePin === idx;
 
-      return <PinContainer
-        id={idx}
-        lat={pin.latitude}
-        lng={pin.longitude}
-        key={idx}
-        isActive={isActive}
+      return (
+        <PinContainer
+          id={idx}
+          lat={pin.latitude}
+          lng={pin.longitude}
+          key={idx}
+          isActive={isActive}
         />
+      );
     });
   }
 
@@ -46,29 +48,31 @@ class TapasMap extends React.Component {
   }
 
   getInitialBounds() {
-    const bounds = getBoundsByLocation(this.props.pins, 'Granada');
+    const bounds = getBoundsByLocation(this.props.pins, "Granada");
 
     const mapSize = {
       width: document.body.clientWidth * 0.9,
-      height: document.body.clientHeight * 0.8,
-    }
+      height: document.body.clientHeight * 0.8
+    };
 
-    const {center, zoom} = fitBounds(bounds, mapSize);
+    const { center, zoom } = fitBounds(bounds, mapSize);
 
-    this.setState({center, zoom});
+    this.setState({ center, zoom });
   }
 
   getUpdatedBounds(oldProps, newProps) {
     const zoomChange = oldProps.zoomed !== newProps.zoomed;
-    const zoomInStart = !zoomChange && oldProps.activePin === null && newProps.activePin !== null;
+    const zoomInStart =
+      !zoomChange && oldProps.activePin === null && newProps.activePin !== null;
     const zoomOutEnd = zoomChange && oldProps.activePin === null;
 
-    const center = (zoomOutEnd || zoomInStart)
-      ? this.state.center
-      : getPinCoords(newProps.pins[newProps.activePin])
-        || getPinCoords(oldProps.pins[oldProps.activePin]);
+    const center =
+      zoomOutEnd || zoomInStart
+        ? this.state.center
+        : getPinCoords(newProps.pins[newProps.activePin]) ||
+          getPinCoords(oldProps.pins[oldProps.activePin]);
 
-    this.setState({center});
+    this.setState({ center });
   }
 
   componentWillMount() {
@@ -80,29 +84,28 @@ class TapasMap extends React.Component {
   }
 
   render() {
-    const innerClass = this.props.activePin !== null
-      ? 'inner-active'
-      : 'inner';
+    const innerClass = this.props.activePin !== null ? "inner-active" : "inner";
 
     function createOptions(map) {
       return {
         styles: mapStyles,
         keyboardShortcuts: false,
         zoomControlOptions: {
-          position: map.ControlPosition.LEFT_BOTTOM,
-        },
-      }
-    };
+          position: map.ControlPosition.LEFT_BOTTOM
+        }
+      };
+    }
 
     return (
-      <div styleName='map'>
+      <div styleName="map">
         <div styleName={innerClass}>
           <GoogleMap
-            bootstrapURLKeys={{key: MAPS_API_KEY}}
+            bootstrapURLKeys={{ key: MAPS_API_KEY }}
             options={createOptions}
             zoom={this.state.zoom}
             center={this.state.center}
-            resetBoundsOnResize={true}>
+            resetBoundsOnResize={true}
+          >
             {this.pins()}
           </GoogleMap>
         </div>
