@@ -28,7 +28,6 @@
   }
 }
 
-
 .sidebar-inner {
   @include sidebar-widths;
   display: flex;
@@ -110,12 +109,13 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+  overflow: auto;
 }
 
 .scroll-container {
   padding: 0 $gutter;
   overflow-y: auto;
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
   transition: box-shadow 0.2s ease;
   -webkit-overflow-scrolling: touch;
 }
